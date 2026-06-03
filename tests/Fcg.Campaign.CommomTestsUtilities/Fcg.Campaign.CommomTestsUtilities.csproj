@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Bogus" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Fcg.Campaign.Application\Fcg.Campaign.Application.csproj" />
+    <ProjectReference Include="..\..\src\Fcg.Campaign.Domain\Fcg.Campaign.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Fcg.Campaign.Messages\Fcg.Campaign.Messages.csproj" />
+  </ItemGroup>
+</Project>
