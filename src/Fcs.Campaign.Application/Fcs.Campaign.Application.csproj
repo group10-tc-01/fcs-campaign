@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\fcs.Campaign.Domain\fcs.Campaign.Domain.csproj" />
+    <ProjectReference Include="..\fcs.Campaign.Messages\fcs.Campaign.Messages.csproj" />
+  </ItemGroup>
+</Project>

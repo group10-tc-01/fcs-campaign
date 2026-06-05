@@ -1,0 +1,32 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="docker-compose.yml" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/0 - Domain/">
+    <Project Path="src/fcs.Campaign.Domain/fcs.Campaign.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/1 - Application/">
+    <Project Path="src/fcs.Campaign.Application/fcs.Campaign.Application.csproj" />
+    <Project Path="src/fcs.Campaign.Messages/fcs.Campaign.Messages.csproj" />
+  </Folder>
+  <Folder Name="/src/2 - Infrastructure/">
+    <Project Path="src/fcs.Campaign.Infrastructure.Auth/fcs.Campaign.Infrastructure.Auth.csproj" />
+    <Project Path="src/fcs.Campaign.Infrastructure.Kafka/fcs.Campaign.Infrastructure.Kafka.csproj" />
+    <Project Path="src/fcs.Campaign.Infrastructure.SqlServer/fcs.Campaign.Infrastructure.SqlServer.csproj" />
+  </Folder>
+  <Folder Name="/src/3 - WebApi/">
+    <Project Path="src/fcs.Campaign.WebApi/fcs.Campaign.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/fcs.Campaign.CommomTestsUtilities/fcs.Campaign.CommomTestsUtilities.csproj" />
+    <Project Path="tests/fcs.Campaign.FunctionalTests/fcs.Campaign.FunctionalTests.csproj" />
+    <Project Path="tests/fcs.Campaign.IntegratedTests/fcs.Campaign.IntegratedTests.csproj" />
+    <Project Path="tests/fcs.Campaign.UnitTests/fcs.Campaign.UnitTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Http" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\fcs.Campaign.Application\fcs.Campaign.Application.csproj" />
+    <ProjectReference Include="..\fcs.Campaign.Infrastructure.Auth\fcs.Campaign.Infrastructure.Auth.csproj" />
+    <ProjectReference Include="..\fcs.Campaign.Infrastructure.SqlServer\fcs.Campaign.Infrastructure.SqlServer.csproj" />
+    <ProjectReference Include="..\fcs.Campaign.Infrastructure.Kafka\fcs.Campaign.Infrastructure.Kafka.csproj" />
+  </ItemGroup>
+</Project>

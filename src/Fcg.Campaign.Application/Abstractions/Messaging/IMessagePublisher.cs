@@ -1,6 +1,0 @@
-namespace Fcg.Campaign.Application.Abstractions.Messaging;
-
-public interface IMessagePublisher
-{
-    Task PublishAsync<TMessage>(TMessage message, CancellationToken cancellationToken = default);
-}
