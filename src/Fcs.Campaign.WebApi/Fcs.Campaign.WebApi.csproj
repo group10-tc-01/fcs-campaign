@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\fcs.Campaign.Application\fcs.Campaign.Application.csproj" />
-    <ProjectReference Include="..\fcs.Campaign.Infrastructure.Auth\fcs.Campaign.Infrastructure.Auth.csproj" />
-    <ProjectReference Include="..\fcs.Campaign.Infrastructure.SqlServer\fcs.Campaign.Infrastructure.SqlServer.csproj" />
-    <ProjectReference Include="..\fcs.Campaign.Infrastructure.Kafka\fcs.Campaign.Infrastructure.Kafka.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.Application\Fcs.Campaign.Application.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.Infrastructure.Auth\Fcs.Campaign.Infrastructure.Auth.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.Infrastructure.SqlServer\Fcs.Campaign.Infrastructure.SqlServer.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.Infrastructure.Kafka\Fcs.Campaign.Infrastructure.Kafka.csproj" />
   </ItemGroup>
 </Project>

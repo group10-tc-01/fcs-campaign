@@ -7,7 +7,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\fcs.Campaign.Domain\fcs.Campaign.Domain.csproj" />
-    <ProjectReference Include="..\fcs.Campaign.Messages\fcs.Campaign.Messages.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.Domain\Fcs.Campaign.Domain.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.Messages\Fcs.Campaign.Messages.csproj" />
   </ItemGroup>
 </Project>

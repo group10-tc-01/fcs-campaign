@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\fcs.Campaign.Application\fcs.Campaign.Application.csproj" />
-    <ProjectReference Include="..\..\src\fcs.Campaign.Domain\fcs.Campaign.Domain.csproj" />
-    <ProjectReference Include="..\..\src\fcs.Campaign.Messages\fcs.Campaign.Messages.csproj" />
-    <ProjectReference Include="..\fcs.Campaign.CommomTestsUtilities\fcs.Campaign.CommomTestsUtilities.csproj" />
+    <ProjectReference Include="..\..\src\Fcs.Campaign.Application\Fcs.Campaign.Application.csproj" />
+    <ProjectReference Include="..\..\src\Fcs.Campaign.Domain\Fcs.Campaign.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Fcs.Campaign.Messages\Fcs.Campaign.Messages.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.CommomTestsUtilities\Fcs.Campaign.CommomTestsUtilities.csproj" />
   </ItemGroup>
 </Project>

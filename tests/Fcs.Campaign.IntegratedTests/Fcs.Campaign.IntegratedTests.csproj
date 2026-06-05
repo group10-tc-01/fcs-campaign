@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\fcs.Campaign.WebApi\fcs.Campaign.WebApi.csproj" />
-    <ProjectReference Include="..\fcs.Campaign.CommomTestsUtilities\fcs.Campaign.CommomTestsUtilities.csproj" />
+    <ProjectReference Include="..\..\src\Fcs.Campaign.WebApi\Fcs.Campaign.WebApi.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.CommomTestsUtilities\Fcs.Campaign.CommomTestsUtilities.csproj" />
   </ItemGroup>
 </Project>

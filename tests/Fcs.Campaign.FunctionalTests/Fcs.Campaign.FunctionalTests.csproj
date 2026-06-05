@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\fcs.Campaign.Application\fcs.Campaign.Application.csproj" />
-    <ProjectReference Include="..\fcs.Campaign.CommomTestsUtilities\fcs.Campaign.CommomTestsUtilities.csproj" />
+    <ProjectReference Include="..\..\src\Fcs.Campaign.Application\Fcs.Campaign.Application.csproj" />
+    <ProjectReference Include="..\Fcs.Campaign.CommomTestsUtilities\Fcs.Campaign.CommomTestsUtilities.csproj" />
   </ItemGroup>
 </Project>
