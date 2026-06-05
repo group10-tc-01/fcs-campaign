@@ -1,6 +1,9 @@
 using fcs.Campaign.Domain.Campaigns;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.Application.UseCases.Campaigns;
+
+[ExcludeFromCodeCoverage]
 
 public sealed record CampaignResponse(
     Guid Id,

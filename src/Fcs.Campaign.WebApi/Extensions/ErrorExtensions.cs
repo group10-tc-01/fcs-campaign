@@ -1,8 +1,11 @@
 using fcs.Campaign.Domain;
 using fcs.Campaign.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.WebApi.Extensions;
+
+[ExcludeFromCodeCoverage]
 
 public static class ErrorExtensions
 {

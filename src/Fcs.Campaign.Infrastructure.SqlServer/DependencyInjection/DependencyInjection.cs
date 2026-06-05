@@ -5,8 +5,11 @@ using fcs.Campaign.Infrastructure.SqlServer.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
+
+[ExcludeFromCodeCoverage]
 
 public static class DependencyInjection
 {

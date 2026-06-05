@@ -10,8 +10,11 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
 using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.WebApi.DependencyInjection;
+
+[ExcludeFromCodeCoverage]
 
 public static class DependencyInjection
 {

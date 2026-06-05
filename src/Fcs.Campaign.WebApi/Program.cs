@@ -3,8 +3,11 @@ using fcs.Campaign.WebApi.DependencyInjection;
 using fcs.Campaign.Infrastructure.Auth.DependencyInjection;
 using fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
 using fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.WebApi;
+
+[ExcludeFromCodeCoverage]
 
 public class Program
 {

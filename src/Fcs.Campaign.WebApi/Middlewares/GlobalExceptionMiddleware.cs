@@ -1,8 +1,11 @@
 using fcs.Campaign.WebApi.Models;
 using System.Net;
 using System.Text.Json;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.WebApi.Middlewares;
+
+[ExcludeFromCodeCoverage]
 
 public sealed class GlobalExceptionMiddleware
 {

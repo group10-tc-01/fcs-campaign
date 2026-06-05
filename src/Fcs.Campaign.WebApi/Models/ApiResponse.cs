@@ -1,4 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 namespace fcs.Campaign.WebApi.Models;
+
+[ExcludeFromCodeCoverage]
 
 public sealed class ApiResponse<T>
 {

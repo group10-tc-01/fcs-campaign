@@ -1,4 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 namespace fcs.Campaign.Application.Audit;
+
+[ExcludeFromCodeCoverage]
 
 public sealed record AuditLogRequestedEvent(
     Guid EventId,

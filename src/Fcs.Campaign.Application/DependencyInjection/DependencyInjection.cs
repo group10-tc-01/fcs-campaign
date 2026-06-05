@@ -3,8 +3,11 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.Application.DependencyInjection;
+
+[ExcludeFromCodeCoverage]
 
 public static class DependencyInjection
 {

@@ -1,8 +1,11 @@
 using fcs.Campaign.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.Infrastructure.SqlServer.Persistence.Configurations;
+
+[ExcludeFromCodeCoverage]
 
 public abstract class BaseConfiguration<TEntity> : IEntityTypeConfiguration<TEntity>
     where TEntity : BaseEntity

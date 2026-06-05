@@ -4,8 +4,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.Infrastructure.Auth.DependencyInjection;
+
+[ExcludeFromCodeCoverage]
 
 public static class DependencyInjection
 {

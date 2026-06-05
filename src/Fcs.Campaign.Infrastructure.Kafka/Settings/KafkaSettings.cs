@@ -1,4 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 namespace fcs.Campaign.Infrastructure.Kafka.Settings;
+
+[ExcludeFromCodeCoverage]
 
 public sealed class KafkaSettings
 {
