@@ -44,6 +44,6 @@ jobs:
       run_sonar: true
       sonar_project_key: group10-tc-01_fcs-campaign
       sonar_organization: group10-tc-01
-      dockerfile_path: src/fcs.Campaign.WebApi/Dockerfile
+      dockerfile_path: src/Fcs.Campaign.WebApi/Dockerfile
       docker_context: .
     secrets: inherit

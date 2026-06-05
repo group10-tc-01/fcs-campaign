@@ -18,7 +18,7 @@ jobs:
     with:
       service_name: fcs-campaign
       image_name: fcs-campaign
-      dockerfile_path: src/fcs.Campaign.WebApi/Dockerfile
+      dockerfile_path: src/Fcs.Campaign.WebApi/Dockerfile
       docker_context: .
       azure_container_registry_name: ${{ vars.AZURE_CONTAINER_REGISTRY_NAME }}
       aks_resource_group: ${{ vars.AKS_RESOURCE_GROUP }}
