@@ -8,4 +8,4 @@ RUN dotnet publish "./src/Fcs.Campaign.WebApi/Fcs.Campaign.WebApi.csproj" -c Rel
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "fcs.Campaign.WebApi.dll"]
+ENTRYPOINT ["dotnet", "Fcs.Campaign.WebApi.dll"]

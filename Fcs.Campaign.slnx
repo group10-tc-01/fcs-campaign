@@ -9,24 +9,24 @@
   </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/0 - Domain/">
-    <Project Path="src/fcs.Campaign.Domain/fcs.Campaign.Domain.csproj" />
+    <Project Path="src/Fcs.Campaign.Domain/Fcs.Campaign.Domain.csproj" />
   </Folder>
   <Folder Name="/src/1 - Application/">
-    <Project Path="src/fcs.Campaign.Application/fcs.Campaign.Application.csproj" />
-    <Project Path="src/fcs.Campaign.Messages/fcs.Campaign.Messages.csproj" />
+    <Project Path="src/Fcs.Campaign.Application/Fcs.Campaign.Application.csproj" />
+    <Project Path="src/Fcs.Campaign.Messages/Fcs.Campaign.Messages.csproj" />
   </Folder>
   <Folder Name="/src/2 - Infrastructure/">
-    <Project Path="src/fcs.Campaign.Infrastructure.Auth/fcs.Campaign.Infrastructure.Auth.csproj" />
-    <Project Path="src/fcs.Campaign.Infrastructure.Kafka/fcs.Campaign.Infrastructure.Kafka.csproj" />
-    <Project Path="src/fcs.Campaign.Infrastructure.SqlServer/fcs.Campaign.Infrastructure.SqlServer.csproj" />
+    <Project Path="src/Fcs.Campaign.Infrastructure.Auth/Fcs.Campaign.Infrastructure.Auth.csproj" />
+    <Project Path="src/Fcs.Campaign.Infrastructure.Kafka/Fcs.Campaign.Infrastructure.Kafka.csproj" />
+    <Project Path="src/Fcs.Campaign.Infrastructure.SqlServer/Fcs.Campaign.Infrastructure.SqlServer.csproj" />
   </Folder>
   <Folder Name="/src/3 - WebApi/">
-    <Project Path="src/fcs.Campaign.WebApi/fcs.Campaign.WebApi.csproj" />
+    <Project Path="src/Fcs.Campaign.WebApi/Fcs.Campaign.WebApi.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/fcs.Campaign.CommomTestsUtilities/fcs.Campaign.CommomTestsUtilities.csproj" />
-    <Project Path="tests/fcs.Campaign.FunctionalTests/fcs.Campaign.FunctionalTests.csproj" />
-    <Project Path="tests/fcs.Campaign.IntegratedTests/fcs.Campaign.IntegratedTests.csproj" />
-    <Project Path="tests/fcs.Campaign.UnitTests/fcs.Campaign.UnitTests.csproj" />
+    <Project Path="tests/Fcs.Campaign.CommomTestsUtilities/Fcs.Campaign.CommomTestsUtilities.csproj" />
+    <Project Path="tests/Fcs.Campaign.FunctionalTests/Fcs.Campaign.FunctionalTests.csproj" />
+    <Project Path="tests/Fcs.Campaign.IntegratedTests/Fcs.Campaign.IntegratedTests.csproj" />
+    <Project Path="tests/Fcs.Campaign.UnitTests/Fcs.Campaign.UnitTests.csproj" />
   </Folder>
 </Solution>

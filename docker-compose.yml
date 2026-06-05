@@ -38,7 +38,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: src/fcs.Campaign.WebApi/Dockerfile
+      dockerfile: src/Fcs.Campaign.WebApi/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Docker
     depends_on:
