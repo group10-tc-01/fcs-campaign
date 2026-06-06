@@ -1,4 +1,4 @@
-using fcs.Campaign.Application.UseCases.Campaigns;
+using fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
 using fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
 using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
 using fcs.Campaign.IntegratedTests.Configurations;
@@ -36,9 +36,17 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
         var response = await _client.GetAsync("/api/v1/transparency/campaigns");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<IReadOnlyList<CampaignResponse>>>(JsonOptions);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<IReadOnlyList<TransparencyCampaignResponse>>>(JsonOptions);
         payload.Should().NotBeNull();
-        payload!.Data.Should().ContainSingle(item => item.Id == campaign.Id);
+        payload!.Data.Should().ContainSingle(item =>
+            item.Title == campaign.Title &&
+            item.FinancialGoal == campaign.FinancialGoal &&
+            item.TotalAmountRaised == campaign.TotalAmountRaised);
+
+        var json = await response.Content.ReadAsStringAsync();
+        json.Should().NotContain("\"id\"");
+        json.Should().NotContain("\"description\"");
+        json.Should().NotContain("\"status\"");
     }
 
     [Fact]

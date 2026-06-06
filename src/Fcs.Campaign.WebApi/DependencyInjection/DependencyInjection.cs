@@ -3,6 +3,7 @@ using fcs.Campaign.Application.Abstractions.Authentication;
 using fcs.Campaign.WebApi.Authentication;
 using fcs.Campaign.WebApi.Middlewares;
 using fcs.Campaign.WebApi.Observability;
+using fcs.Campaign.WebApi.Settings;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using OpenTelemetry.Metrics;
@@ -47,6 +48,7 @@ public static class DependencyInjection
             });
         });
 
+        services.AddCorsConfiguration(configuration);
         services.AddHealthChecks();
         services.AddRouting(options => options.LowercaseUrls = true);
 
@@ -58,14 +60,37 @@ public static class DependencyInjection
 
     public static WebApplication UseWebApiPipeline(this WebApplication app)
     {
+        app.UseMiddleware<CorrelationIdMiddleware>();
         app.UseMiddleware<GlobalExceptionMiddleware>();
         app.UseSwagger();
         app.UseSwaggerUI();
+        app.UseCors();
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
         app.MapHealthChecks("/health", new HealthCheckOptions());
         return app;
+    }
+
+    private static IServiceCollection AddCorsConfiguration(this IServiceCollection services, IConfiguration configuration)
+    {
+        var settings = configuration
+            .GetSection(CorsSettings.SectionName)
+            .Get<CorsSettings>()
+            ?? new CorsSettings { AllowedOrigins = ["http://localhost:4200", "http://127.0.0.1:4200"] };
+
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                policy
+                    .WithOrigins(settings.AllowedOrigins)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+
+        return services;
     }
 
     private static IServiceCollection AddObservability(this IServiceCollection services, IConfiguration configuration)

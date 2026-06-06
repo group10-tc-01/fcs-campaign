@@ -1,11 +1,10 @@
 using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.Application.UseCases.Campaigns;
 using fcs.Campaign.Domain;
 using fcs.Campaign.Domain.Campaigns;
 
 namespace fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
 
-public sealed class GetTransparencyCampaignsQueryHandler : IQueryHandler<GetTransparencyCampaignsQuery, IReadOnlyList<CampaignResponse>>
+public sealed class GetTransparencyCampaignsQueryHandler : IQueryHandler<GetTransparencyCampaignsQuery, IReadOnlyList<TransparencyCampaignResponse>>
 {
     private readonly ICampaignRepository _campaignRepository;
 
@@ -14,9 +13,9 @@ public sealed class GetTransparencyCampaignsQueryHandler : IQueryHandler<GetTran
         _campaignRepository = campaignRepository;
     }
 
-    public async Task<Result<IReadOnlyList<CampaignResponse>>> Handle(GetTransparencyCampaignsQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IReadOnlyList<TransparencyCampaignResponse>>> Handle(GetTransparencyCampaignsQuery request, CancellationToken cancellationToken)
     {
         var campaigns = await _campaignRepository.GetAllActiveAsync(request.Page, request.PageSize, cancellationToken);
-        return campaigns.Select(CampaignResponse.FromDomain).ToArray();
+        return campaigns.Select(TransparencyCampaignResponse.FromDomain).ToArray();
     }
 }
