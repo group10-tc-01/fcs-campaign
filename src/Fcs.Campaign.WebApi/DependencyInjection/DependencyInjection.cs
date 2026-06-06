@@ -60,7 +60,6 @@ public static class DependencyInjection
 
     public static WebApplication UseWebApiPipeline(this WebApplication app)
     {
-        app.UseMiddleware<CorrelationIdMiddleware>();
         app.UseMiddleware<GlobalExceptionMiddleware>();
         app.UseSwagger();
         app.UseSwaggerUI();
