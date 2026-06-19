@@ -3,6 +3,8 @@ using fcs.Campaign.WebApi.DependencyInjection;
 using fcs.Campaign.Infrastructure.Auth.DependencyInjection;
 using fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
 using fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
+using fcs.Campaign.Infrastructure.SqlServer.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.WebApi;
@@ -22,6 +24,16 @@ public class Program
         builder.Services.AddAuthInfrastructure(builder.Configuration);
 
         var app = builder.Build();
+
+        if (!app.Environment.IsEnvironment("Test"))
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<FcsCampaignDbContext>();
+                context.Database.Migrate();
+            }
+        }
+
         app.UseWebApiPipeline();
         app.Run();
     }
