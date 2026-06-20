@@ -1,6 +1,6 @@
 using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
-using fcs.Campaign.Domain;
 using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
 using DomainCampaign = fcs.Campaign.Domain.Campaigns.Campaign;
 

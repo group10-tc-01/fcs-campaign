@@ -1,15 +1,15 @@
+using System.Net;
+using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using fcs.Campaign.Application.UseCases.Campaigns;
-using fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
 using fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
+using fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
 using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
 using fcs.Campaign.Domain.Campaigns;
 using fcs.Campaign.IntegratedTests.Configurations;
 using fcs.Campaign.WebApi.Models;
 using FluentAssertions;
-using System.Net;
-using System.Net.Http.Json;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace fcs.Campaign.IntegratedTests.Controllers;
 

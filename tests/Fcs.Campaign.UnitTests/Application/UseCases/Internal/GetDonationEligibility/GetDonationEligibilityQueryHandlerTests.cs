@@ -1,7 +1,7 @@
 using fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
 using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
 using fcs.Campaign.CommomTestsUtilities.TestDoubles;
-using fcs.Campaign.Domain;
+using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
 
 namespace fcs.Campaign.UnitTests.Application.UseCases.Internal.GetDonationEligibility;

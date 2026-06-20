@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using fcs.Campaign.Domain.Abstractions;
 using fcs.Campaign.Domain.Campaigns;
 using fcs.Campaign.Infrastructure.SqlServer.Persistence;
@@ -5,7 +6,6 @@ using fcs.Campaign.Infrastructure.SqlServer.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
 

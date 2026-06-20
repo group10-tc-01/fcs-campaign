@@ -1,4 +1,4 @@
-using fcs.Campaign.Domain;
+using Fcs.Campaign.Domain.Results;
 using MediatR;
 
 namespace fcs.Campaign.Application.Abstractions.Messaging;

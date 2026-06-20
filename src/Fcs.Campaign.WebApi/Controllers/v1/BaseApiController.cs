@@ -1,7 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.WebApi.Controllers.v1;
 

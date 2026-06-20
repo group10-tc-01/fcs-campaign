@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using Asp.Versioning;
 using fcs.Campaign.Application.Abstractions.Authentication;
 using fcs.Campaign.WebApi.Authentication;
@@ -12,8 +14,6 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
 using Serilog.Sinks.OpenTelemetry;
-using System.Text.Json.Serialization;
-using System.Diagnostics.CodeAnalysis;
 
 namespace fcs.Campaign.WebApi.DependencyInjection;
 

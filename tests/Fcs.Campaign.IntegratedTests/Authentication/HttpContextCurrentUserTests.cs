@@ -1,8 +1,8 @@
+using System.Security.Claims;
+using System.Text.Json;
 using fcs.Campaign.WebApi.Authentication;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
-using System.Text.Json;
 
 namespace fcs.Campaign.IntegratedTests.Authentication;
 

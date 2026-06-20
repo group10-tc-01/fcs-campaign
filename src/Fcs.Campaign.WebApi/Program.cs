@@ -1,11 +1,11 @@
-using fcs.Campaign.Application.DependencyInjection;
-using fcs.Campaign.WebApi.DependencyInjection;
-using fcs.Campaign.Infrastructure.Auth.DependencyInjection;
-using fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
-using fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
-using fcs.Campaign.Infrastructure.SqlServer.Persistence;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
+using fcs.Campaign.Application.DependencyInjection;
+using fcs.Campaign.Infrastructure.Auth.DependencyInjection;
+using fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
+using fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
+using fcs.Campaign.Infrastructure.SqlServer.Persistence;
+using fcs.Campaign.WebApi.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace fcs.Campaign.WebApi;
 
@@ -27,11 +27,9 @@ public class Program
 
         if (!app.Environment.IsEnvironment("Test"))
         {
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<FcsCampaignDbContext>();
-                context.Database.Migrate();
-            }
+            using var scope = app.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<FcsCampaignDbContext>();
+            context.Database.Migrate();
         }
 
         app.UseWebApiPipeline();

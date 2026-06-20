@@ -1,7 +1,7 @@
 using fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
 using fcs.Campaign.CommomTestsUtilities.TestDoubles;
-using fcs.Campaign.Domain;
 using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
 
 namespace fcs.Campaign.UnitTests.Application.UseCases.Campaigns.CreateCampaign;

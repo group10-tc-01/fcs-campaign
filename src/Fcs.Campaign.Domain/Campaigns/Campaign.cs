@@ -1,4 +1,5 @@
 using fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Results;
 
 namespace fcs.Campaign.Domain.Campaigns;
 
