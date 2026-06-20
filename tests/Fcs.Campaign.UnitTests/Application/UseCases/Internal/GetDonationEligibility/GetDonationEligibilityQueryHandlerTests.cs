@@ -1,10 +1,10 @@
-using fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
-using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
-using fcs.Campaign.CommomTestsUtilities.TestDoubles;
+using Fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
+using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
+using Fcs.Campaign.CommomTestsUtilities.TestDoubles;
 using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
 
-namespace fcs.Campaign.UnitTests.Application.UseCases.Internal.GetDonationEligibility;
+namespace Fcs.Campaign.UnitTests.Application.UseCases.Internal.GetDonationEligibility;
 
 public sealed class GetDonationEligibilityQueryHandlerTests
 {

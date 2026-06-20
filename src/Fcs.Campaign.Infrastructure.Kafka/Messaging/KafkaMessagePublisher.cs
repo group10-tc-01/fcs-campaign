@@ -1,11 +1,11 @@
 using System.Text.Json;
 using Confluent.Kafka;
-using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.Infrastructure.Kafka.Settings;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Infrastructure.Kafka.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace fcs.Campaign.Infrastructure.Kafka.Messaging;
+namespace Fcs.Campaign.Infrastructure.Kafka.Messaging;
 
 public sealed class KafkaMessagePublisher : IMessagePublisher
 {

@@ -1,5 +1,5 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Abstractions.Messaging;
 
-namespace fcs.Campaign.Application.UseCases.Campaigns.CancelCampaign;
+namespace Fcs.Campaign.Application.UseCases.Campaigns.CancelCampaign;
 
 public sealed record CancelCampaignCommand(Guid Id) : ICommand<CampaignResponse>;

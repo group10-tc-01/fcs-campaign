@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
+namespace Fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
 
 public sealed class CreateCampaignCommandValidator : AbstractValidator<CreateCampaignCommand>
 {

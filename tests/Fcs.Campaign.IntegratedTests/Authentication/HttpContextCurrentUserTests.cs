@@ -1,10 +1,10 @@
 using System.Security.Claims;
 using System.Text.Json;
-using fcs.Campaign.WebApi.Authentication;
+using Fcs.Campaign.WebApi.Authentication;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 
-namespace fcs.Campaign.IntegratedTests.Authentication;
+namespace Fcs.Campaign.IntegratedTests.Authentication;
 
 public sealed class HttpContextCurrentUserTests
 {

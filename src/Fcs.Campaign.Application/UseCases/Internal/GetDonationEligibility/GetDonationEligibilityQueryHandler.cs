@@ -1,8 +1,8 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Domain.Campaigns;
 using Fcs.Campaign.Domain.Results;
 
-namespace fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
+namespace Fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
 
 public sealed class GetDonationEligibilityQueryHandler : IQueryHandler<GetDonationEligibilityQuery, GetDonationEligibilityResponse>
 {

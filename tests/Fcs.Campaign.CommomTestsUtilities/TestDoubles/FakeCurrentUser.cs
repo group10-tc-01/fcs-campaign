@@ -1,6 +1,6 @@
-using fcs.Campaign.Application.Abstractions.Authentication;
+using Fcs.Campaign.Application.Abstractions.Authentication;
 
-namespace fcs.Campaign.CommomTestsUtilities.TestDoubles;
+namespace Fcs.Campaign.CommomTestsUtilities.TestDoubles;
 
 public sealed class FakeCurrentUser : ICurrentUser
 {

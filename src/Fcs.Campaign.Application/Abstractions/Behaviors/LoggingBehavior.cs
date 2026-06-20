@@ -4,7 +4,7 @@ using Fcs.Campaign.Domain.Results;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace fcs.Campaign.Application.Abstractions.Behaviors;
+namespace Fcs.Campaign.Application.Abstractions.Behaviors;
 
 public sealed class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull

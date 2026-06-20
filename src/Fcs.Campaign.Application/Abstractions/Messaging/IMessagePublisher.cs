@@ -1,4 +1,4 @@
-namespace fcs.Campaign.Application.Abstractions.Messaging;
+namespace Fcs.Campaign.Application.Abstractions.Messaging;
 
 public interface IMessagePublisher
 {

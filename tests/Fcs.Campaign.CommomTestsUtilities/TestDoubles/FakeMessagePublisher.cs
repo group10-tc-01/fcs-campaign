@@ -1,6 +1,6 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Abstractions.Messaging;
 
-namespace fcs.Campaign.CommomTestsUtilities.TestDoubles;
+namespace Fcs.Campaign.CommomTestsUtilities.TestDoubles;
 
 public sealed class FakeMessagePublisher : IMessagePublisher
 {

@@ -1,11 +1,11 @@
-using fcs.Campaign.Application.Abstractions.Authentication;
-using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.Application.Audit;
-using fcs.Campaign.Domain.Abstractions;
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Application.Abstractions.Authentication;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Audit;
+using Fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Campaigns;
 using Fcs.Campaign.Domain.Results;
 
-namespace fcs.Campaign.Application.UseCases.Campaigns.CompleteCampaign;
+namespace Fcs.Campaign.Application.UseCases.Campaigns.CompleteCampaign;
 
 public sealed class CompleteCampaignCommandHandler : ICommandHandler<CompleteCampaignCommand, CampaignResponse>
 {

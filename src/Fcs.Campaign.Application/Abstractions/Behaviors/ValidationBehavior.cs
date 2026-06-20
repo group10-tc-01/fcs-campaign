@@ -2,7 +2,7 @@ using Fcs.Campaign.Domain.Results;
 using FluentValidation;
 using MediatR;
 
-namespace fcs.Campaign.Application.Abstractions.Behaviors;
+namespace Fcs.Campaign.Application.Abstractions.Behaviors;
 
 public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull

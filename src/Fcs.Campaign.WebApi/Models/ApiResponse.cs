@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-namespace fcs.Campaign.WebApi.Models;
+namespace Fcs.Campaign.WebApi.Models;
 
 [ExcludeFromCodeCoverage]
 

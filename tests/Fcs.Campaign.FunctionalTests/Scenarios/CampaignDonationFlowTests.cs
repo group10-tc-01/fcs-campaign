@@ -1,7 +1,7 @@
-using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
+using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
 using FluentAssertions;
 
-namespace fcs.Campaign.FunctionalTests.Scenarios;
+namespace Fcs.Campaign.FunctionalTests.Scenarios;
 
 public sealed class CampaignDonationFlowTests
 {

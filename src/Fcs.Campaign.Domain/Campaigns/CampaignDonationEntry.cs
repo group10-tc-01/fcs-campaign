@@ -1,7 +1,7 @@
-using fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Abstractions;
 using Fcs.Campaign.Domain.Results;
 
-namespace fcs.Campaign.Domain.Campaigns;
+namespace Fcs.Campaign.Domain.Campaigns;
 
 public sealed class CampaignDonationEntry : BaseEntity
 {

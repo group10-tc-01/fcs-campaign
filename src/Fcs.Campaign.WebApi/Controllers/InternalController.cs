@@ -1,11 +1,11 @@
-using fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
-using fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
-using fcs.Campaign.WebApi.Extensions;
-using fcs.Campaign.WebApi.Models;
+using Fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
+using Fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
+using Fcs.Campaign.WebApi.Extensions;
+using Fcs.Campaign.WebApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace fcs.Campaign.WebApi.Controllers;
+namespace Fcs.Campaign.WebApi.Controllers;
 
 [ApiController]
 [Route("internal/campaigns")]

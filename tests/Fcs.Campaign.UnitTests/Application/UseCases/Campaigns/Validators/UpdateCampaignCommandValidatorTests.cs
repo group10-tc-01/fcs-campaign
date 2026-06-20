@@ -1,7 +1,7 @@
-using fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
+using Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
 using FluentAssertions;
 
-namespace fcs.Campaign.UnitTests.Application.UseCases.Campaigns.Validators;
+namespace Fcs.Campaign.UnitTests.Application.UseCases.Campaigns.Validators;
 
 public sealed class UpdateCampaignCommandValidatorTests
 {

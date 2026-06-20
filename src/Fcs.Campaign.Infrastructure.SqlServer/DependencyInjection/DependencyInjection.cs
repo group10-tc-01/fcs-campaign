@@ -1,13 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
-using fcs.Campaign.Domain.Abstractions;
-using fcs.Campaign.Domain.Campaigns;
-using fcs.Campaign.Infrastructure.SqlServer.Persistence;
-using fcs.Campaign.Infrastructure.SqlServer.Persistence.Repositories;
+using Fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Infrastructure.SqlServer.Persistence;
+using Fcs.Campaign.Infrastructure.SqlServer.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
+namespace Fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
 
 [ExcludeFromCodeCoverage]
 

@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using fcs.Campaign.Application.Abstractions.Behaviors;
+using Fcs.Campaign.Application.Abstractions.Behaviors;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace fcs.Campaign.Application.DependencyInjection;
+namespace Fcs.Campaign.Application.DependencyInjection;
 
 [ExcludeFromCodeCoverage]
 

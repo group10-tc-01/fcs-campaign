@@ -1,11 +1,11 @@
-using fcs.Campaign.Application.UseCases.Campaigns.CompleteCampaign;
-using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
-using fcs.Campaign.CommomTestsUtilities.TestDoubles;
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Application.UseCases.Campaigns.CompleteCampaign;
+using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
+using Fcs.Campaign.CommomTestsUtilities.TestDoubles;
+using Fcs.Campaign.Domain.Campaigns;
 using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
 
-namespace fcs.Campaign.UnitTests.Application.UseCases.Campaigns.CompleteCampaign;
+namespace Fcs.Campaign.UnitTests.Application.UseCases.Campaigns.CompleteCampaign;
 
 public sealed class CompleteCampaignCommandHandlerTests
 {

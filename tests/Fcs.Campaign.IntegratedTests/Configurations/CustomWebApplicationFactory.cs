@@ -1,10 +1,10 @@
 using System.Security.Claims;
 using System.Text.Encodings.Web;
-using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.CommomTestsUtilities.TestDoubles;
-using fcs.Campaign.Domain.Abstractions;
-using fcs.Campaign.Domain.Campaigns;
-using fcs.Campaign.WebApi;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.CommomTestsUtilities.TestDoubles;
+using Fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.WebApi;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace fcs.Campaign.IntegratedTests.Configurations;
+namespace Fcs.Campaign.IntegratedTests.Configurations;
 
 public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {

@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-namespace fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
+namespace Fcs.Campaign.Application.UseCases.Internal.GetDonationEligibility;
 
 [ExcludeFromCodeCoverage]
 

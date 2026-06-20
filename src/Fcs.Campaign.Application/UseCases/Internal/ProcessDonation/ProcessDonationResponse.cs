@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-namespace fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
+namespace Fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
 
 [ExcludeFromCodeCoverage]
 

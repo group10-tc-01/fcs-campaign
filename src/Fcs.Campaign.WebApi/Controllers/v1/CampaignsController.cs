@@ -1,16 +1,16 @@
-using fcs.Campaign.Application.UseCases.Campaigns;
-using fcs.Campaign.Application.UseCases.Campaigns.CancelCampaign;
-using fcs.Campaign.Application.UseCases.Campaigns.CompleteCampaign;
-using fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
-using fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
-using fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
-using fcs.Campaign.WebApi.Extensions;
-using fcs.Campaign.WebApi.Models;
+using Fcs.Campaign.Application.UseCases.Campaigns;
+using Fcs.Campaign.Application.UseCases.Campaigns.CancelCampaign;
+using Fcs.Campaign.Application.UseCases.Campaigns.CompleteCampaign;
+using Fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
+using Fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
+using Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
+using Fcs.Campaign.WebApi.Extensions;
+using Fcs.Campaign.WebApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace fcs.Campaign.WebApi.Controllers.v1;
+namespace Fcs.Campaign.WebApi.Controllers.v1;
 
 [Authorize(Roles = "GestorONG")]
 public sealed class CampaignsController : BaseApiController

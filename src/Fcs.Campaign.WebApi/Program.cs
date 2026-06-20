@@ -1,13 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
-using fcs.Campaign.Application.DependencyInjection;
-using fcs.Campaign.Infrastructure.Auth.DependencyInjection;
-using fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
-using fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
-using fcs.Campaign.Infrastructure.SqlServer.Persistence;
-using fcs.Campaign.WebApi.DependencyInjection;
+using Fcs.Campaign.Application.DependencyInjection;
+using Fcs.Campaign.Infrastructure.Auth.DependencyInjection;
+using Fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
+using Fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
+using Fcs.Campaign.Infrastructure.SqlServer.Persistence;
+using Fcs.Campaign.WebApi.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
-namespace fcs.Campaign.WebApi;
+namespace Fcs.Campaign.WebApi;
 
 [ExcludeFromCodeCoverage]
 

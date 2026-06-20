@@ -1,10 +1,10 @@
-using fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
-using fcs.Campaign.WebApi.Extensions;
-using fcs.Campaign.WebApi.Models;
+using Fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
+using Fcs.Campaign.WebApi.Extensions;
+using Fcs.Campaign.WebApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace fcs.Campaign.WebApi.Controllers.v1;
+namespace Fcs.Campaign.WebApi.Controllers.v1;
 
 [Route("api/v{version:apiVersion}/transparency/campaigns")]
 public sealed class TransparencyController : BaseApiController

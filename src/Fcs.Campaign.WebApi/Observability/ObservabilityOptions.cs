@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace fcs.Campaign.WebApi.Observability;
+namespace Fcs.Campaign.WebApi.Observability;
 
 [ExcludeFromCodeCoverage]
 

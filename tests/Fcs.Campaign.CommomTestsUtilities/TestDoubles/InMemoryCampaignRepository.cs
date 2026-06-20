@@ -1,6 +1,6 @@
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Domain.Campaigns;
 
-namespace fcs.Campaign.CommomTestsUtilities.TestDoubles;
+namespace Fcs.Campaign.CommomTestsUtilities.TestDoubles;
 
 public sealed class InMemoryCampaignRepository : ICampaignRepository
 {

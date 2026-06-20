@@ -1,4 +1,4 @@
-namespace fcs.Campaign.Domain.Campaigns;
+namespace Fcs.Campaign.Domain.Campaigns;
 
 public enum CampaignStatus
 {

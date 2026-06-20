@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
-using fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace fcs.Campaign.Infrastructure.SqlServer.Persistence.Configurations;
+namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Configurations;
 
 [ExcludeFromCodeCoverage]
 

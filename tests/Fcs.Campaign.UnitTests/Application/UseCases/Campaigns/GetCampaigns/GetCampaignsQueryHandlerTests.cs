@@ -1,9 +1,9 @@
-using fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
-using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
-using fcs.Campaign.CommomTestsUtilities.TestDoubles;
+using Fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
+using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
+using Fcs.Campaign.CommomTestsUtilities.TestDoubles;
 using FluentAssertions;
 
-namespace fcs.Campaign.UnitTests.Application.UseCases.Campaigns.GetCampaigns;
+namespace Fcs.Campaign.UnitTests.Application.UseCases.Campaigns.GetCampaigns;
 
 public sealed class GetCampaignsQueryHandlerTests
 {

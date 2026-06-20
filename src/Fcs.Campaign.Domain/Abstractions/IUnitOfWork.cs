@@ -1,4 +1,4 @@
-namespace fcs.Campaign.Domain.Abstractions;
+namespace Fcs.Campaign.Domain.Abstractions;
 
 public interface IUnitOfWork
 {

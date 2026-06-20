@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace fcs.Campaign.Infrastructure.SqlServer.Persistence.Configurations;
+namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Configurations;
 
 [ExcludeFromCodeCoverage]
 

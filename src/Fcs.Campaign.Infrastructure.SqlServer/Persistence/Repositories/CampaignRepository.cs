@@ -1,7 +1,7 @@
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Domain.Campaigns;
 using Microsoft.EntityFrameworkCore;
 
-namespace fcs.Campaign.Infrastructure.SqlServer.Persistence.Repositories;
+namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Repositories;
 
 public sealed class CampaignRepository : ICampaignRepository
 {

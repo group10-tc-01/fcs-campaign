@@ -1,7 +1,7 @@
-using fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
+using Fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
 using FluentAssertions;
 
-namespace fcs.Campaign.UnitTests.Application.UseCases.Campaigns.Validators;
+namespace Fcs.Campaign.UnitTests.Application.UseCases.Campaigns.Validators;
 
 public sealed class CreateCampaignCommandValidatorTests
 {

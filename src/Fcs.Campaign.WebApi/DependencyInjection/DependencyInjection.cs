@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using Asp.Versioning;
-using fcs.Campaign.Application.Abstractions.Authentication;
-using fcs.Campaign.WebApi.Authentication;
-using fcs.Campaign.WebApi.Middlewares;
-using fcs.Campaign.WebApi.Observability;
-using fcs.Campaign.WebApi.Settings;
+using Fcs.Campaign.Application.Abstractions.Authentication;
+using Fcs.Campaign.WebApi.Authentication;
+using Fcs.Campaign.WebApi.Middlewares;
+using Fcs.Campaign.WebApi.Observability;
+using Fcs.Campaign.WebApi.Settings;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using OpenTelemetry.Exporter;
@@ -15,7 +15,7 @@ using OpenTelemetry.Trace;
 using Serilog;
 using Serilog.Sinks.OpenTelemetry;
 
-namespace fcs.Campaign.WebApi.DependencyInjection;
+namespace Fcs.Campaign.WebApi.DependencyInjection;
 
 [ExcludeFromCodeCoverage]
 

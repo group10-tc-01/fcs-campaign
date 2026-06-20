@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text.Json;
-using fcs.Campaign.WebApi.Models;
+using Fcs.Campaign.WebApi.Models;
 
-namespace fcs.Campaign.WebApi.Middlewares;
+namespace Fcs.Campaign.WebApi.Middlewares;
 
 [ExcludeFromCodeCoverage]
 

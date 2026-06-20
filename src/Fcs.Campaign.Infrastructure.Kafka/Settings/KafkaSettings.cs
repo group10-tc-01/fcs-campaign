@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-namespace fcs.Campaign.Infrastructure.Kafka.Settings;
+namespace Fcs.Campaign.Infrastructure.Kafka.Settings;
 
 [ExcludeFromCodeCoverage]
 
