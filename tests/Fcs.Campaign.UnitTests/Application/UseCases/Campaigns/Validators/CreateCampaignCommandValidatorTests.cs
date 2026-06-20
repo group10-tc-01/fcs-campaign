@@ -32,4 +32,23 @@ public sealed class CreateCampaignCommandValidatorTests
             nameof(CreateCampaignCommand.FinancialGoal)
         ]);
     }
+
+    [Fact]
+    public void Given_EndDateBeforeStartDate_When_Validate_Then_ShouldReturnEndDateError()
+    {
+        var sut = new CreateCampaignCommandValidator();
+        var startDate = DateTime.UtcNow.Date.AddDays(10);
+        var command = new CreateCampaignCommand(
+            "Food basket",
+            "Monthly food support",
+            startDate,
+            startDate.AddDays(-1),
+            500);
+
+        var result = sut.Validate(command);
+
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should().ContainSingle(error =>
+            error.PropertyName == nameof(CreateCampaignCommand.EndDate));
+    }
 }

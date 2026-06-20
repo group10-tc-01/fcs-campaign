@@ -10,10 +10,10 @@
   <Folder Name="/src/" />
   <Folder Name="/src/0 - Domain/">
     <Project Path="src/Fcs.Campaign.Domain/Fcs.Campaign.Domain.csproj" />
+    <Project Path="src/Fcs.Campaign.Messages/Fcs.Campaign.Messages.csproj" />
   </Folder>
   <Folder Name="/src/1 - Application/">
     <Project Path="src/Fcs.Campaign.Application/Fcs.Campaign.Application.csproj" />
-    <Project Path="src/Fcs.Campaign.Messages/Fcs.Campaign.Messages.csproj" />
   </Folder>
   <Folder Name="/src/2 - Infrastructure/">
     <Project Path="src/Fcs.Campaign.Infrastructure.Auth/Fcs.Campaign.Infrastructure.Auth.csproj" />

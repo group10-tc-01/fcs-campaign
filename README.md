@@ -81,11 +81,12 @@ Base path público versionado: `/api/v1`.
 |--------|-------------------------------------------|-------------|-----------|
 | POST   | `/api/v1/campaigns`                       | `GestorONG` | Cria uma campanha ativa |
 | PUT    | `/api/v1/campaigns/{id}`                  | `GestorONG` | Edita uma campanha ativa |
-| PATCH  | `/api/v1/campaigns/{id}/complete`         | `GestorONG` | Conclui uma campanha ativa |
-| PATCH  | `/api/v1/campaigns/{id}/cancel`           | `GestorONG` | Cancela uma campanha ativa |
+| PATCH  | `/api/v1/campaigns/{id}/status`           | `GestorONG` | Conclui ou cancela uma campanha ativa |
 | GET    | `/api/v1/campaigns?page=1&pageSize=10`    | `GestorONG` | Lista campanhas para gestão |
+| GET    | `/api/v1/campaigns/{id}`                  | `GestorONG` | Consulta uma campanha para gestão |
 | GET    | `/api/v1/transparency/campaigns`          | Público     | Lista campanhas ativas para transparência |
 | GET    | `/health`                                 | Operacional | Healthcheck |
+| GET    | `/metrics`                                | Operacional | Métricas Prometheus |
 
 Endpoints internos entre serviços:
 

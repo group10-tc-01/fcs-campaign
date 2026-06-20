@@ -22,13 +22,24 @@ public sealed class CampaignRepository : ICampaignRepository
         return _dbContext.Campaigns.FirstOrDefaultAsync(campaign => campaign.Id == id, cancellationToken);
     }
 
-    public async Task<IReadOnlyList<Campaign.Domain.Campaigns.Campaign>> GetAllAsync(int page, int pageSize, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<Campaign.Domain.Campaigns.Campaign>> GetAllAsync(
+        int page,
+        int pageSize,
+        IReadOnlyCollection<CampaignStatus>? statuses = null,
+        CancellationToken cancellationToken = default)
     {
-        return await _dbContext.Campaigns
+        return await ApplyStatusFilter(_dbContext.Campaigns, statuses)
             .OrderByDescending(campaign => campaign.CreatedAt)
-            .Skip((NormalizePage(page) - 1) * NormalizePageSize(pageSize))
-            .Take(NormalizePageSize(pageSize))
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync(cancellationToken);
+    }
+
+    public Task<int> CountAsync(
+        IReadOnlyCollection<CampaignStatus>? statuses = null,
+        CancellationToken cancellationToken = default)
+    {
+        return ApplyStatusFilter(_dbContext.Campaigns, statuses).CountAsync(cancellationToken);
     }
 
     public async Task<IReadOnlyList<Campaign.Domain.Campaigns.Campaign>> GetAllActiveAsync(int page, int pageSize, CancellationToken cancellationToken = default)
@@ -36,9 +47,16 @@ public sealed class CampaignRepository : ICampaignRepository
         return await _dbContext.Campaigns
             .Where(campaign => campaign.Status == CampaignStatus.Active)
             .OrderByDescending(campaign => campaign.CreatedAt)
-            .Skip((NormalizePage(page) - 1) * NormalizePageSize(pageSize))
-            .Take(NormalizePageSize(pageSize))
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync(cancellationToken);
+    }
+
+    public Task<int> CountActiveAsync(CancellationToken cancellationToken = default)
+    {
+        return _dbContext.Campaigns.CountAsync(
+            campaign => campaign.Status == CampaignStatus.Active,
+            cancellationToken);
     }
 
     public Task<bool> ExistsDonationEntryAsync(Guid campaignId, Guid donationId, CancellationToken cancellationToken = default)
@@ -52,6 +70,12 @@ public sealed class CampaignRepository : ICampaignRepository
         await _dbContext.CampaignDonationEntries.AddAsync(entry, cancellationToken);
     }
 
-    private static int NormalizePage(int page) => page < 1 ? 1 : page;
-    private static int NormalizePageSize(int pageSize) => pageSize is < 1 or > 100 ? 10 : pageSize;
+    private static IQueryable<Campaign.Domain.Campaigns.Campaign> ApplyStatusFilter(
+        IQueryable<Campaign.Domain.Campaigns.Campaign> query,
+        IReadOnlyCollection<CampaignStatus>? statuses)
+    {
+        return statuses is { Count: > 0 }
+            ? query.Where(campaign => statuses.Contains(campaign.Status))
+            : query;
+    }
 }

@@ -2,7 +2,9 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Fcs.Campaign.Application.Common.Pagination;
 using Fcs.Campaign.Application.UseCases.Campaigns;
+using Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaignStatus;
 using Fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
 using Fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
 using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
@@ -81,9 +83,10 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
         var response = await _client.GetAsync("/api/v1/campaigns");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<IReadOnlyList<CampaignResponse>>>(JsonOptions);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<PagedResponse<CampaignResponse>>>(JsonOptions);
         payload.Should().NotBeNull();
-        payload!.Data.Should().Contain(item => item.Id == campaign.Id);
+        payload!.Data!.Items.Should().Contain(item => item.Id == campaign.Id);
+        payload.Data.TotalCount.Should().Be(1);
     }
 
     [Fact]
@@ -110,31 +113,33 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
     }
 
     [Fact]
-    public async Task Given_ActiveCampaign_When_CompleteCampaignIsCalled_Then_ShouldReturnCompletedCampaign()
+    public async Task Given_ActiveCampaign_When_UpdateStatusIsCalled_Then_ShouldReturnCompletedCampaign()
     {
         var campaign = new CampaignBuilder().Build();
         await _factory.Repository.AddAsync(campaign);
 
-        var response = await _client.PatchAsync($"/api/v1/campaigns/{campaign.Id}/complete", null);
+        var response = await _client.PatchAsJsonAsync(
+            $"/api/v1/campaigns/{campaign.Id}/status",
+            new { Status = CampaignStatus.Completed.ToString() });
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<CampaignResponse>>(JsonOptions);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<CampaignStatusResponse>>(JsonOptions);
         payload.Should().NotBeNull();
         payload!.Data!.Status.Should().Be(CampaignStatus.Completed);
     }
 
     [Fact]
-    public async Task Given_ActiveCampaign_When_CancelCampaignIsCalled_Then_ShouldReturnCanceledCampaign()
+    public async Task Given_ExistingCampaign_When_GetByIdIsCalled_Then_ShouldReturnCampaign()
     {
         var campaign = new CampaignBuilder().Build();
         await _factory.Repository.AddAsync(campaign);
 
-        var response = await _client.PatchAsync($"/api/v1/campaigns/{campaign.Id}/cancel", null);
+        var response = await _client.GetAsync($"/api/v1/campaigns/{campaign.Id}");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var payload = await response.Content.ReadFromJsonAsync<ApiResponse<CampaignResponse>>(JsonOptions);
         payload.Should().NotBeNull();
-        payload!.Data!.Status.Should().Be(CampaignStatus.Canceled);
+        payload!.Data!.Id.Should().Be(campaign.Id);
     }
 
     [Fact]
@@ -146,9 +151,9 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
         var response = await _client.GetAsync("/api/v1/transparency/campaigns");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<IReadOnlyList<TransparencyCampaignResponse>>>(JsonOptions);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<PagedResponse<TransparencyCampaignResponse>>>(JsonOptions);
         payload.Should().NotBeNull();
-        payload!.Data.Should().ContainSingle(item =>
+        payload!.Data!.Items.Should().ContainSingle(item =>
             item.Title == campaign.Title &&
             item.FinancialGoal == campaign.FinancialGoal &&
             item.TotalAmountRaised == campaign.TotalAmountRaised);

@@ -43,6 +43,4 @@ public sealed class InternalController : ControllerBase
 
         return Ok(ApiResponse<ProcessDonationResponse>.FromSuccess(result.Value));
     }
-
-    public sealed record ProcessDonationRequest(Guid DonationId, decimal Amount, DateTime ProcessedAt);
 }
