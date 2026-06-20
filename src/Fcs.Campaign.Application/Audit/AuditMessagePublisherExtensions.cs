@@ -1,6 +1,6 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Abstractions.Messaging;
 
-namespace fcs.Campaign.Application.Audit;
+namespace Fcs.Campaign.Application.Audit;
 
 public static class AuditMessagePublisherExtensions
 {

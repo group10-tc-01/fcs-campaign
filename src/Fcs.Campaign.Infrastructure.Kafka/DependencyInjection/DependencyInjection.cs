@@ -1,11 +1,11 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.Infrastructure.Kafka.Messaging;
-using fcs.Campaign.Infrastructure.Kafka.Settings;
+using System.Diagnostics.CodeAnalysis;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Infrastructure.Kafka.Messaging;
+using Fcs.Campaign.Infrastructure.Kafka.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
 
-namespace fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
+namespace Fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
 
 [ExcludeFromCodeCoverage]
 

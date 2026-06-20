@@ -1,8 +1,8 @@
 using System.Security.Claims;
 using System.Text.Json;
-using fcs.Campaign.Application.Abstractions.Authentication;
+using Fcs.Campaign.Application.Abstractions.Authentication;
 
-namespace fcs.Campaign.WebApi.Authentication;
+namespace Fcs.Campaign.WebApi.Authentication;
 
 public sealed class HttpContextCurrentUser : ICurrentUser
 {

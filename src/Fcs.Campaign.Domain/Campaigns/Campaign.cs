@@ -1,6 +1,7 @@
-using fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Results;
 
-namespace fcs.Campaign.Domain.Campaigns;
+namespace Fcs.Campaign.Domain.Campaigns;
 
 public sealed class Campaign : BaseEntity
 {
@@ -69,7 +70,7 @@ public sealed class Campaign : BaseEntity
     {
         if (Status != CampaignStatus.Active)
         {
-            return Error.Conflict("Campaign.NotEditable", "Only active campaigns can be updated.");
+            return Error.Validation("Campaign.NotEditable", "Only active campaigns can be updated.");
         }
 
         var validation = ValidateEditableFields(title, description, startDate, endDate, financialGoal);
@@ -92,7 +93,7 @@ public sealed class Campaign : BaseEntity
     {
         if (Status != CampaignStatus.Active)
         {
-            return Error.Conflict("Campaign.InvalidStatusTransition", "Only active campaigns can be completed.");
+            return Error.Validation("Campaign.InvalidStatusTransition", "Only active campaigns can be completed.");
         }
 
         Status = CampaignStatus.Completed;
@@ -104,7 +105,7 @@ public sealed class Campaign : BaseEntity
     {
         if (Status != CampaignStatus.Active)
         {
-            return Error.Conflict("Campaign.InvalidStatusTransition", "Only active campaigns can be canceled.");
+            return Error.Validation("Campaign.InvalidStatusTransition", "Only active campaigns can be canceled.");
         }
 
         Status = CampaignStatus.Canceled;
@@ -116,7 +117,7 @@ public sealed class Campaign : BaseEntity
     {
         if (Status != CampaignStatus.Active)
         {
-            return Error.Conflict("Campaign.NotEligibleForDonation", "Campaign is not eligible to receive donations.");
+            return Error.Validation("Campaign.NotEligibleForDonation", "Campaign is not eligible to receive donations.");
         }
 
         if (amount <= 0)

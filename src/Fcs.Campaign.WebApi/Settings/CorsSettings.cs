@@ -1,4 +1,4 @@
-namespace fcs.Campaign.WebApi.Settings;
+namespace Fcs.Campaign.WebApi.Settings;
 
 public sealed class CorsSettings
 {

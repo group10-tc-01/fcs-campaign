@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
+namespace Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
 
 public sealed class UpdateCampaignCommandValidator : AbstractValidator<UpdateCampaignCommand>
 {
@@ -9,7 +9,10 @@ public sealed class UpdateCampaignCommandValidator : AbstractValidator<UpdateCam
         RuleFor(command => command.Id).NotEmpty();
         RuleFor(command => command.Title).NotEmpty().MaximumLength(200);
         RuleFor(command => command.Description).NotEmpty().MaximumLength(2000);
-        RuleFor(command => command.EndDate).GreaterThanOrEqualTo(DateTime.UtcNow.Date);
+        RuleFor(command => command.EndDate)
+            .GreaterThanOrEqualTo(DateTime.UtcNow.Date)
+            .Must((command, endDate) => endDate.Date >= command.StartDate.Date)
+            .WithMessage("End date cannot be before start date.");
         RuleFor(command => command.FinancialGoal).GreaterThan(0);
     }
 }

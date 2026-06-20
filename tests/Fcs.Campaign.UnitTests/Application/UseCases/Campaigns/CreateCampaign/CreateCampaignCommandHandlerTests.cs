@@ -1,10 +1,10 @@
-using fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
-using fcs.Campaign.CommomTestsUtilities.TestDoubles;
-using fcs.Campaign.Domain;
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
+using Fcs.Campaign.CommomTestsUtilities.TestDoubles;
+using Fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
 
-namespace fcs.Campaign.UnitTests.Application.UseCases.Campaigns.CreateCampaign;
+namespace Fcs.Campaign.UnitTests.Application.UseCases.Campaigns.CreateCampaign;
 
 public sealed class CreateCampaignCommandHandlerTests
 {

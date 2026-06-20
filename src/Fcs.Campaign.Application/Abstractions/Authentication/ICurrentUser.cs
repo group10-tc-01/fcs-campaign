@@ -1,4 +1,4 @@
-namespace fcs.Campaign.Application.Abstractions.Authentication;
+namespace Fcs.Campaign.Application.Abstractions.Authentication;
 
 public interface ICurrentUser
 {

@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
+namespace Fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
 
 [ExcludeFromCodeCoverage]
 public sealed record TransparencyCampaignResponse(

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
+namespace Fcs.Campaign.Application.UseCases.Internal.ProcessDonation;
 
 public sealed class ProcessDonationCommandValidator : AbstractValidator<ProcessDonationCommand>
 {

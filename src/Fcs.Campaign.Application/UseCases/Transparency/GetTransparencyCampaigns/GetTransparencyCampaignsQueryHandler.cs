@@ -1,10 +1,11 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.Domain;
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Common.Pagination;
+using Fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Domain.Results;
 
-namespace fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
+namespace Fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
 
-public sealed class GetTransparencyCampaignsQueryHandler : IQueryHandler<GetTransparencyCampaignsQuery, IReadOnlyList<TransparencyCampaignResponse>>
+public sealed class GetTransparencyCampaignsQueryHandler : IQueryHandler<GetTransparencyCampaignsQuery, PagedResponse<TransparencyCampaignResponse>>
 {
     private readonly ICampaignRepository _campaignRepository;
 
@@ -13,9 +14,17 @@ public sealed class GetTransparencyCampaignsQueryHandler : IQueryHandler<GetTran
         _campaignRepository = campaignRepository;
     }
 
-    public async Task<Result<IReadOnlyList<TransparencyCampaignResponse>>> Handle(GetTransparencyCampaignsQuery request, CancellationToken cancellationToken)
+    public async Task<Result<PagedResponse<TransparencyCampaignResponse>>> Handle(GetTransparencyCampaignsQuery request, CancellationToken cancellationToken)
     {
-        var campaigns = await _campaignRepository.GetAllActiveAsync(request.Page, request.PageSize, cancellationToken);
-        return campaigns.Select(TransparencyCampaignResponse.FromDomain).ToArray();
+        var page = PagedResponse<TransparencyCampaignResponse>.NormalizePage(request.Page);
+        var pageSize = PagedResponse<TransparencyCampaignResponse>.NormalizePageSize(request.PageSize);
+        var campaigns = await _campaignRepository.GetAllActiveAsync(page, pageSize, cancellationToken);
+        var totalCount = await _campaignRepository.CountActiveAsync(cancellationToken);
+
+        return new PagedResponse<TransparencyCampaignResponse>(
+            campaigns.Select(TransparencyCampaignResponse.FromDomain).ToArray(),
+            page,
+            pageSize,
+            totalCount);
     }
 }

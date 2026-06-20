@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-namespace fcs.Campaign.Application.Audit;
+namespace Fcs.Campaign.Application.Audit;
 
 [ExcludeFromCodeCoverage]
 

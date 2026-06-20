@@ -1,4 +1,4 @@
-namespace fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
+namespace Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
 
 public sealed class CampaignBuilder
 {

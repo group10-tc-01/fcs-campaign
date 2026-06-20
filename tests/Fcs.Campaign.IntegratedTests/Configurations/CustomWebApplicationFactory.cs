@@ -1,20 +1,21 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
-using fcs.Campaign.CommomTestsUtilities.TestDoubles;
-using fcs.Campaign.Domain.Abstractions;
-using fcs.Campaign.Domain.Campaigns;
-using fcs.Campaign.WebApi;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.CommomTestsUtilities.TestDoubles;
+using Fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.WebApi;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Security.Claims;
-using System.Text.Encodings.Web;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-namespace fcs.Campaign.IntegratedTests.Configurations;
+namespace Fcs.Campaign.IntegratedTests.Configurations;
 
 public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
@@ -27,6 +28,15 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test");
+
+        builder.ConfigureAppConfiguration((_, configurationBuilder) =>
+        {
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
+            {
+                ["ConnectionStrings:SqlServer"] =
+                    "Server=invalid-campaign-test-host;Database=CampaignsDb;User Id=sa;Password=Invalid123!;TrustServerCertificate=True;Connect Timeout=1;"
+            });
+        });
 
         builder.ConfigureServices(services =>
         {

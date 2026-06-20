@@ -1,5 +1,10 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Common.Pagination;
+using Fcs.Campaign.Domain.Campaigns;
 
-namespace fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
+namespace Fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
 
-public sealed record GetCampaignsQuery(int Page = 1, int PageSize = 10) : IQuery<IReadOnlyList<CampaignResponse>>;
+public sealed record GetCampaignsQuery(
+    int Page = 1,
+    int PageSize = 10,
+    IReadOnlyCollection<CampaignStatus>? Statuses = null) : IQuery<PagedResponse<CampaignResponse>>;

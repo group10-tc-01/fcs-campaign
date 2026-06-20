@@ -1,6 +1,6 @@
-using fcs.Campaign.Domain.Abstractions;
+using Fcs.Campaign.Domain.Abstractions;
 
-namespace fcs.Campaign.CommomTestsUtilities.TestDoubles;
+namespace Fcs.Campaign.CommomTestsUtilities.TestDoubles;
 
 public sealed class FakeUnitOfWork : IUnitOfWork
 {

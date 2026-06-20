@@ -1,16 +1,18 @@
-using fcs.Campaign.Application.UseCases.Campaigns;
-using fcs.Campaign.Application.UseCases.Campaigns.CancelCampaign;
-using fcs.Campaign.Application.UseCases.Campaigns.CompleteCampaign;
-using fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
-using fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
-using fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
-using fcs.Campaign.WebApi.Extensions;
-using fcs.Campaign.WebApi.Models;
+using Fcs.Campaign.Application.Common.Pagination;
+using Fcs.Campaign.Application.UseCases.Campaigns;
+using Fcs.Campaign.Application.UseCases.Campaigns.CreateCampaign;
+using Fcs.Campaign.Application.UseCases.Campaigns.GetCampaignById;
+using Fcs.Campaign.Application.UseCases.Campaigns.GetCampaigns;
+using Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
+using Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaignStatus;
+using Fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.WebApi.Extensions;
+using Fcs.Campaign.WebApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace fcs.Campaign.WebApi.Controllers.v1;
+namespace Fcs.Campaign.WebApi.Controllers.v1;
 
 [Authorize(Roles = "GestorONG")]
 public sealed class CampaignsController : BaseApiController
@@ -45,24 +47,26 @@ public sealed class CampaignsController : BaseApiController
         return Ok(ApiResponse<CampaignResponse>.FromSuccess(result.Value));
     }
 
-    [HttpPatch("{id:guid}/complete")]
-    [ProducesResponseType(typeof(ApiResponse<CampaignResponse>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Complete(Guid id, CancellationToken cancellationToken)
+    [HttpPatch("{id:guid}/status")]
+    [ProducesResponseType(typeof(ApiResponse<CampaignStatusResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> UpdateStatus(Guid id,[FromBody] UpdateCampaignStatusRequest request,CancellationToken cancellationToken)
     {
-        var result = await Mediator.Send(new CompleteCampaignCommand(id), cancellationToken);
+        var result = await Mediator.Send(new UpdateCampaignStatusCommand(id, request.Status), cancellationToken);
+
         if (result.IsFailure)
         {
             return result.Error.ToActionResult();
         }
 
-        return Ok(ApiResponse<CampaignResponse>.FromSuccess(result.Value));
+        return Ok(ApiResponse<CampaignStatusResponse>.FromSuccess(result.Value));
     }
 
-    [HttpPatch("{id:guid}/cancel")]
+    [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(ApiResponse<CampaignResponse>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Cancel(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
-        var result = await Mediator.Send(new CancelCampaignCommand(id), cancellationToken);
+        var result = await Mediator.Send(new GetCampaignByIdQuery(id), cancellationToken);
+
         if (result.IsFailure)
         {
             return result.Error.ToActionResult();
@@ -72,17 +76,19 @@ public sealed class CampaignsController : BaseApiController
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<CampaignResponse>>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10, CancellationToken cancellationToken = default)
+    [ProducesResponseType(typeof(ApiResponse<PagedResponse<CampaignResponse>>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll(
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 10,
+        [FromQuery(Name = "status")] CampaignStatus[]? statuses = null,
+        CancellationToken cancellationToken = default)
     {
-        var result = await Mediator.Send(new GetCampaignsQuery(page, pageSize), cancellationToken);
+        var result = await Mediator.Send(new GetCampaignsQuery(page, pageSize, statuses), cancellationToken);
         if (result.IsFailure)
         {
             return result.Error.ToActionResult();
         }
 
-        return Ok(ApiResponse<IReadOnlyList<CampaignResponse>>.FromSuccess(result.Value));
+        return Ok(ApiResponse<PagedResponse<CampaignResponse>>.FromSuccess(result.Value));
     }
-
-    public sealed record UpdateCampaignRequest(string Title, string Description, DateTime StartDate, DateTime EndDate, decimal FinancialGoal);
 }

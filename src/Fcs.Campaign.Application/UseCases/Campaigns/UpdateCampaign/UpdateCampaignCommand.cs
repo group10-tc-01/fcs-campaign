@@ -1,6 +1,6 @@
-using fcs.Campaign.Application.Abstractions.Messaging;
+using Fcs.Campaign.Application.Abstractions.Messaging;
 
-namespace fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
+namespace Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
 
 public sealed record UpdateCampaignCommand(
     Guid Id,

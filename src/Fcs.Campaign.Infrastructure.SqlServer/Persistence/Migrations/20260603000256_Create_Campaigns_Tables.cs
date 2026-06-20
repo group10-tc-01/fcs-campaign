@@ -1,10 +1,9 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations
+namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations
 {
     /// <inheritdoc />
     [ExcludeFromCodeCoverage]

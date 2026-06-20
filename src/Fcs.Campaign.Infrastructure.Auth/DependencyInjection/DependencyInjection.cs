@@ -1,12 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System.Diagnostics.CodeAnalysis;
 
-namespace fcs.Campaign.Infrastructure.Auth.DependencyInjection;
+namespace Fcs.Campaign.Infrastructure.Auth.DependencyInjection;
 
 [ExcludeFromCodeCoverage]
 

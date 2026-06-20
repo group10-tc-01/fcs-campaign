@@ -1,10 +1,11 @@
-using fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
-using fcs.Campaign.WebApi.Extensions;
-using fcs.Campaign.WebApi.Models;
+using Fcs.Campaign.Application.Common.Pagination;
+using Fcs.Campaign.Application.UseCases.Transparency.GetTransparencyCampaigns;
+using Fcs.Campaign.WebApi.Extensions;
+using Fcs.Campaign.WebApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace fcs.Campaign.WebApi.Controllers.v1;
+namespace Fcs.Campaign.WebApi.Controllers.v1;
 
 [Route("api/v{version:apiVersion}/transparency/campaigns")]
 public sealed class TransparencyController : BaseApiController
@@ -14,7 +15,7 @@ public sealed class TransparencyController : BaseApiController
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<TransparencyCampaignResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<PagedResponse<TransparencyCampaignResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetActive([FromQuery] int page = 1, [FromQuery] int pageSize = 10, CancellationToken cancellationToken = default)
     {
         var result = await Mediator.Send(new GetTransparencyCampaignsQuery(page, pageSize), cancellationToken);
@@ -23,6 +24,6 @@ public sealed class TransparencyController : BaseApiController
             return result.Error.ToActionResult();
         }
 
-        return Ok(ApiResponse<IReadOnlyList<TransparencyCampaignResponse>>.FromSuccess(result.Value));
+        return Ok(ApiResponse<PagedResponse<TransparencyCampaignResponse>>.FromSuccess(result.Value));
     }
 }

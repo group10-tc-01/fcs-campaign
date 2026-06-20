@@ -1,4 +1,4 @@
-namespace fcs.Campaign.Application.Audit;
+namespace Fcs.Campaign.Application.Audit;
 
 public static class AuditActions
 {

@@ -1,18 +1,18 @@
-using fcs.Campaign.Application.DependencyInjection;
-using fcs.Campaign.WebApi.DependencyInjection;
-using fcs.Campaign.Infrastructure.Auth.DependencyInjection;
-using fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
-using fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
-using fcs.Campaign.Infrastructure.SqlServer.Persistence;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
+using Fcs.Campaign.Application.DependencyInjection;
+using Fcs.Campaign.Infrastructure.Auth.DependencyInjection;
+using Fcs.Campaign.Infrastructure.Kafka.DependencyInjection;
+using Fcs.Campaign.Infrastructure.SqlServer.DependencyInjection;
+using Fcs.Campaign.WebApi.DependencyInjection;
 
-namespace fcs.Campaign.WebApi;
+namespace Fcs.Campaign.WebApi;
 
 [ExcludeFromCodeCoverage]
 
 public class Program
 {
+    protected Program() { }
+
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
@@ -24,16 +24,6 @@ public class Program
         builder.Services.AddAuthInfrastructure(builder.Configuration);
 
         var app = builder.Build();
-
-        if (!app.Environment.IsEnvironment("Test"))
-        {
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<FcsCampaignDbContext>();
-                context.Database.Migrate();
-            }
-        }
-
         app.UseWebApiPipeline();
         app.Run();
     }

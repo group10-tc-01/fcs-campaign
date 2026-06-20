@@ -1,7 +1,7 @@
+using Fcs.Campaign.Domain.Results;
 using MediatR;
-using fcs.Campaign.Domain;
 
-namespace fcs.Campaign.Application.Abstractions.Messaging;
+namespace Fcs.Campaign.Application.Abstractions.Messaging;
 
 public interface ICommand<TResponse> : IRequest<Result<TResponse>>
 {

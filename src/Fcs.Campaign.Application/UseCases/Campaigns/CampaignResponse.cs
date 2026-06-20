@@ -1,7 +1,7 @@
-using fcs.Campaign.Domain.Campaigns;
 using System.Diagnostics.CodeAnalysis;
+using Fcs.Campaign.Domain.Campaigns;
 
-namespace fcs.Campaign.Application.UseCases.Campaigns;
+namespace Fcs.Campaign.Application.UseCases.Campaigns;
 
 [ExcludeFromCodeCoverage]
 

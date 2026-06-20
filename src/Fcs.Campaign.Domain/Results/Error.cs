@@ -1,4 +1,4 @@
-namespace fcs.Campaign.Domain;
+namespace Fcs.Campaign.Domain.Results;
 
 public sealed record Error(string Code, string Message, ErrorType Type)
 {

@@ -1,10 +1,10 @@
-using fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
-using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
-using fcs.Campaign.CommomTestsUtilities.TestDoubles;
-using fcs.Campaign.Domain;
+using Fcs.Campaign.Application.UseCases.Campaigns.UpdateCampaign;
+using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
+using Fcs.Campaign.CommomTestsUtilities.TestDoubles;
+using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
 
-namespace fcs.Campaign.UnitTests.Application.UseCases.Campaigns.UpdateCampaign;
+namespace Fcs.Campaign.UnitTests.Application.UseCases.Campaigns.UpdateCampaign;
 
 public sealed class UpdateCampaignCommandHandlerTests
 {
@@ -41,7 +41,7 @@ public sealed class UpdateCampaignCommandHandlerTests
     }
 
     [Fact]
-    public async Task Given_CompletedCampaign_When_Handle_Then_ShouldReturnConflict()
+    public async Task Given_CompletedCampaign_When_Handle_Then_ShouldReturnValidationError()
     {
         var repository = new InMemoryCampaignRepository();
         var campaign = new CampaignBuilder().Build();
@@ -54,7 +54,7 @@ public sealed class UpdateCampaignCommandHandlerTests
         var result = await sut.Handle(request, CancellationToken.None);
 
         result.IsFailure.Should().BeTrue();
-        result.Error.Type.Should().Be(ErrorType.Conflict);
+        result.Error.Type.Should().Be(ErrorType.Validation);
         unitOfWork.SaveChangesCalls.Should().Be(0);
     }
 }

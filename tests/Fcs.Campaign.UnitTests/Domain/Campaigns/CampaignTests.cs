@@ -1,10 +1,10 @@
-using fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
-using fcs.Campaign.Domain;
-using fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
+using Fcs.Campaign.Domain.Campaigns;
+using Fcs.Campaign.Domain.Results;
 using FluentAssertions;
-using DomainCampaign = fcs.Campaign.Domain.Campaigns.Campaign;
+using DomainCampaign = Fcs.Campaign.Domain.Campaigns.Campaign;
 
-namespace fcs.Campaign.UnitTests.Domain.Campaigns;
+namespace Fcs.Campaign.UnitTests.Domain.Campaigns;
 
 public sealed class CampaignTests
 {
@@ -54,7 +54,7 @@ public sealed class CampaignTests
     }
 
     [Fact]
-    public void Given_CompletedCampaign_When_ApplyDonation_Then_ShouldReturnConflict()
+    public void Given_CompletedCampaign_When_ApplyDonation_Then_ShouldReturnValidationError()
     {
         var campaign = new CampaignBuilder().Build();
         campaign.Complete();
@@ -62,11 +62,11 @@ public sealed class CampaignTests
         var result = campaign.ApplyDonation(150);
 
         result.IsFailure.Should().BeTrue();
-        result.Error.Type.Should().Be(ErrorType.Conflict);
+        result.Error.Type.Should().Be(ErrorType.Validation);
     }
 
     [Fact]
-    public void Given_CanceledCampaign_When_Complete_Then_ShouldReturnConflict()
+    public void Given_CanceledCampaign_When_Complete_Then_ShouldReturnValidationError()
     {
         var campaign = new CampaignBuilder().Build();
         campaign.Cancel();
@@ -74,6 +74,6 @@ public sealed class CampaignTests
         var result = campaign.Complete();
 
         result.IsFailure.Should().BeTrue();
-        result.Error.Type.Should().Be(ErrorType.Conflict);
+        result.Error.Type.Should().Be(ErrorType.Validation);
     }
 }

@@ -1,11 +1,19 @@
-namespace fcs.Campaign.Domain.Campaigns;
+namespace Fcs.Campaign.Domain.Campaigns;
 
 public interface ICampaignRepository
 {
     Task AddAsync(Campaign campaign, CancellationToken cancellationToken = default);
     Task<Campaign?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
-    Task<IReadOnlyList<Campaign>> GetAllAsync(int page, int pageSize, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<Campaign>> GetAllAsync(
+        int page,
+        int pageSize,
+        IReadOnlyCollection<CampaignStatus>? statuses = null,
+        CancellationToken cancellationToken = default);
+    Task<int> CountAsync(
+        IReadOnlyCollection<CampaignStatus>? statuses = null,
+        CancellationToken cancellationToken = default);
     Task<IReadOnlyList<Campaign>> GetAllActiveAsync(int page, int pageSize, CancellationToken cancellationToken = default);
+    Task<int> CountActiveAsync(CancellationToken cancellationToken = default);
     Task<bool> ExistsDonationEntryAsync(Guid campaignId, Guid donationId, CancellationToken cancellationToken = default);
     Task AddDonationEntryAsync(CampaignDonationEntry entry, CancellationToken cancellationToken = default);
 }
