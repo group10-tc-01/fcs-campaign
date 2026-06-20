@@ -1,14 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Fcs.Campaign.WebApi.Observability;
 
 [ExcludeFromCodeCoverage]
-
-public sealed class ObservabilityOptions
+public sealed class ObservabilitySettings
 {
     public const string SectionName = "Observability";
 
-    public string ServiceName { get; set; } = "fcs.Campaign";
+    [Required]
+    public string ServiceName { get; set; } = "Fcs.Campaign";
 
     public bool EnableOtlpExporter { get; set; }
 

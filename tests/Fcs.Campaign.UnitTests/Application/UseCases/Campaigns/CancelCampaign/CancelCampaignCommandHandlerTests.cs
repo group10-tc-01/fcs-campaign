@@ -38,7 +38,7 @@ public sealed class CancelCampaignCommandHandlerTests
     }
 
     [Fact]
-    public async Task Given_CompletedCampaign_When_Handle_Then_ShouldReturnConflict()
+    public async Task Given_CompletedCampaign_When_Handle_Then_ShouldReturnValidationError()
     {
         var repository = new InMemoryCampaignRepository();
         var campaign = new CampaignBuilder().Build();
@@ -50,7 +50,7 @@ public sealed class CancelCampaignCommandHandlerTests
         var result = await sut.Handle(new CancelCampaignCommand(campaign.Id), CancellationToken.None);
 
         result.IsFailure.Should().BeTrue();
-        result.Error.Type.Should().Be(ErrorType.Conflict);
+        result.Error.Type.Should().Be(ErrorType.Validation);
         unitOfWork.SaveChangesCalls.Should().Be(0);
     }
 }

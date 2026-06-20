@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "fcs.Campaign.WebApi": {
+    "Fcs.Campaign.WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using Fcs.Campaign.WebApi.Models;
 using Fcs.Campaign.Domain.Results;
+using Fcs.Campaign.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fcs.Campaign.WebApi.Extensions;

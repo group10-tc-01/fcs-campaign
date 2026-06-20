@@ -26,6 +26,7 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
     public CampaignsControllerTests(CustomWebApplicationFactory factory)
     {
         _factory = factory;
+        _factory.Repository.Reset();
         _client = factory.CreateClient();
     }
 
@@ -48,6 +49,27 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
         payload.Should().NotBeNull();
         payload!.Data!.Title.Should().Be(request.Title);
         payload.Data.Status.Should().Be(CampaignStatus.Active);
+    }
+
+    [Fact]
+    public async Task Given_RequestWithSurroundingWhitespace_When_CreateCampaignIsCalled_Then_ShouldTrimStrings()
+    {
+        var request = new
+        {
+            Title = "  Food basket  ",
+            Description = "  Monthly food support  ",
+            StartDate = DateTime.UtcNow.Date,
+            EndDate = DateTime.UtcNow.Date.AddDays(10),
+            FinancialGoal = 500m
+        };
+
+        var response = await _client.PostAsJsonAsync("/api/v1/campaigns", request);
+
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<CampaignResponse>>(JsonOptions);
+        payload.Should().NotBeNull();
+        payload!.Data!.Title.Should().Be("Food basket");
+        payload.Data.Description.Should().Be("Monthly food support");
     }
 
     [Fact]

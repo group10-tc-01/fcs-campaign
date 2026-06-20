@@ -53,6 +53,12 @@ public sealed class InMemoryCampaignRepository : ICampaignRepository
         return Task.CompletedTask;
     }
 
+    public void Reset()
+    {
+        _campaigns.Clear();
+        _donationEntries.Clear();
+    }
+
     private static int NormalizePage(int page) => page < 1 ? 1 : page;
     private static int NormalizePageSize(int pageSize) => pageSize is < 1 or > 100 ? 10 : pageSize;
 }
