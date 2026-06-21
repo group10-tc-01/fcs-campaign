@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using Asp.Versioning;
 using Fcs.Campaign.Application.Abstractions.Authentication;
-using Fcs.Campaign.WebApi.Authentication;
 using Fcs.Campaign.WebApi.Filters;
 using Fcs.Campaign.WebApi.Observability;
 using Fcs.Campaign.WebApi.Settings;
@@ -19,7 +18,6 @@ public static class DependencyInjection
     public static IServiceCollection AddWebApi(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHttpContextAccessor();
-        services.AddScoped<ICurrentUser, HttpContextCurrentUser>();
         services.AddControllers()
             .AddJsonOptions(options =>
             {

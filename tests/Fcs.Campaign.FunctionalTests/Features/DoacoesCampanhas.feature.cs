@@ -26,8 +26,8 @@ namespace Fcs.Campaign.FunctionalTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Features", "Integração de doações com campanhas", ("  Como serviço interno\r\n  Quero validar e refletir doações\r\n  Para manter o total" +
-                " arrecadado consistente"), global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Features", "Integração de doações com campanhas", "  Como serviço interno\r\n  Quero validar e refletir doações\r\n  Para manter o total" +
+                " arrecadado consistente", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         

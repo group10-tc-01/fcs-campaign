@@ -1,6 +1,6 @@
 using System.Security.Claims;
 using System.Text.Json;
-using Fcs.Campaign.WebApi.Authentication;
+using Fcs.Campaign.Infrastructure.Auth.Authentication;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 

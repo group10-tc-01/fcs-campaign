@@ -1,8 +1,9 @@
 using System.Security.Claims;
 using System.Text.Json;
 using Fcs.Campaign.Application.Abstractions.Authentication;
+using Microsoft.AspNetCore.Http;
 
-namespace Fcs.Campaign.WebApi.Authentication;
+namespace Fcs.Campaign.Infrastructure.Auth.Authentication;
 
 public sealed class HttpContextCurrentUser : ICurrentUser
 {

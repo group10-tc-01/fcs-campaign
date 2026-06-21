@@ -66,7 +66,7 @@ public sealed class OperationalEndpointsTests : IClassFixture<CustomWebApplicati
     public async Task Given_CorrelationIdHeader_When_RequestIsHandled_Then_ShouldPropagateCorrelationId()
     {
         const string correlationId = "campaign-integration-test";
-        using var request = new HttpRequestMessage(HttpMethod.Get, "/api/v1/transparency/campaigns");
+        using var request = new HttpRequestMessage(HttpMethod.Get, "/api/v1/transparency");
         request.Headers.Add("X-Correlation-Id", correlationId);
 
         var response = await _client.SendAsync(request);
@@ -77,7 +77,7 @@ public sealed class OperationalEndpointsTests : IClassFixture<CustomWebApplicati
     [Fact]
     public async Task Given_NoCorrelationIdHeader_When_RequestIsHandled_Then_ShouldGenerateCorrelationId()
     {
-        var response = await _client.GetAsync("/api/v1/transparency/campaigns");
+        var response = await _client.GetAsync("/api/v1/transparency");
 
         response.Headers.GetValues("X-Correlation-Id")
             .Select(IsGuid)
