@@ -170,7 +170,7 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
         var campaign = new CampaignBuilder().Build();
         await _factory.Repository.AddAsync(campaign);
 
-        var response = await _client.GetAsync($"/internal/campaigns/{campaign.Id}/donation-eligibility");
+        var response = await _client.GetAsync($"/api/v1/internal/campaigns/{campaign.Id}/donation-eligibility");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var json = await response.Content.ReadAsStringAsync();
@@ -181,7 +181,7 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
     [Fact]
     public async Task Given_UnknownCampaign_When_GetDonationEligibilityIsCalled_Then_ShouldReturnNotFound()
     {
-        var response = await _client.GetAsync($"/internal/campaigns/{Guid.NewGuid()}/donation-eligibility");
+        var response = await _client.GetAsync($"/api/v1/internal/campaigns{Guid.NewGuid()}/donation-eligibility");
 
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
@@ -194,8 +194,8 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
         var donationId = Guid.NewGuid();
         var request = new { DonationId = donationId, Amount = 100m, ProcessedAt = DateTime.UtcNow };
 
-        var firstResponse = await _client.PostAsJsonAsync($"/internal/campaigns/{campaign.Id}/donation-processed", request);
-        var secondResponse = await _client.PostAsJsonAsync($"/internal/campaigns/{campaign.Id}/donation-processed", request);
+        var firstResponse = await _client.PostAsJsonAsync($"/api/v1/internal/campaigns/{campaign.Id}/donation-processed", request);
+        var secondResponse = await _client.PostAsJsonAsync($"/api/v1/internal/campaigns/{campaign.Id}/donation-processed", request);
 
         firstResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         secondResponse.StatusCode.Should().Be(HttpStatusCode.OK);

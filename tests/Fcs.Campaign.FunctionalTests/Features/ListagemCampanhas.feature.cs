@@ -26,8 +26,8 @@ namespace Fcs.Campaign.FunctionalTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Features", "Listagem de campanhas", ("  Como cliente da API\r\n  Quero consultar campanhas de forma paginada\r\n  Para nave" +
-                "gar pelos resultados de maneira previsível"), global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Features", "Listagem de campanhas", "  Como cliente da API\r\n  Quero consultar campanhas de forma paginada\r\n  Para nave" +
+                "gar pelos resultados de maneira previsível", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         

@@ -193,13 +193,13 @@ public sealed class CampaignStepDefinitions : IDisposable
     [When("eu consultar a elegibilidade da campanha")]
     public async Task QuandoEuConsultarAElegibilidadeDaCampanha()
     {
-        await SendGetAsync($"/internal/campaigns/{_campaign!.Id}/donation-eligibility");
+        await SendGetAsync($"/api/v1/internal/campaigns/{_campaign!.Id}/donation-eligibility");
     }
 
     [When("eu consultar a elegibilidade de uma campanha inexistente")]
     public async Task QuandoEuConsultarAElegibilidadeDeUmaCampanhaInexistente()
     {
-        await SendGetAsync($"/internal/campaigns/{Guid.NewGuid()}/donation-eligibility");
+        await SendGetAsync($"/api/v1/internal/campaigns/{Guid.NewGuid()}/donation-eligibility");
     }
 
     [When(@"eu refletir uma doação de (.*)")]
@@ -351,7 +351,7 @@ public sealed class CampaignStepDefinitions : IDisposable
     private async Task<HttpResponseMessage> ProcessDonationAsync(decimal amount)
     {
         return await _client.PostAsJsonAsync(
-            $"/internal/campaigns/{_campaign!.Id}/donation-processed",
+            $"/api/v1/internal/campaigns/{_campaign!.Id}/donation-processed",
             new { DonationId = _donationId, Amount = amount, ProcessedAt = DateTime.UtcNow });
     }
 

@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using System.Text.Json;
+using Fcs.Campaign.Application.Abstractions.Authentication;
+using Fcs.Campaign.Infrastructure.Auth.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -65,6 +67,8 @@ public static class DependencyInjection
         });
 
         services.AddAuthorization();
+
+        services.AddScoped<ICurrentUser, HttpContextCurrentUser>();
 
         return services;
     }
