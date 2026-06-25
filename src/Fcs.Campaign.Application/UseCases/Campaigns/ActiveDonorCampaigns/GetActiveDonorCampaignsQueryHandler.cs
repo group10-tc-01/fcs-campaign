@@ -18,10 +18,9 @@ public sealed class GetActiveDonorCampaignsQueryHandler
         GetActiveDonorCampaignsQuery request, CancellationToken cancellationToken)
     {
         var campaigns = await _campaignRepository.GetAllActiveAsync(request.Page, request.PageSize, cancellationToken);
-        return Result.Success<IReadOnlyList<ActiveDonorCampaignResponse>>(
-            campaigns
-                .Select(c => new ActiveDonorCampaignResponse(
-                    c.Id, c.Title, c.FinancialGoal, c.TotalAmountRaised, c.StartDate, c.EndDate))
-                .ToArray());
+        return campaigns
+            .Select(c => new ActiveDonorCampaignResponse(
+                c.Id, c.Title, c.FinancialGoal, c.TotalAmountRaised, c.StartDate, c.EndDate))
+            .ToArray();
     }
 }
