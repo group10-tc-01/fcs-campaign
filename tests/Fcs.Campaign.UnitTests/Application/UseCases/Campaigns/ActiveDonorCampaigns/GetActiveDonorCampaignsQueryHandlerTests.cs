@@ -21,8 +21,8 @@ public sealed class GetActiveDonorCampaignsQueryHandlerTests
         var result = await sut.Handle(new GetActiveDonorCampaignsQuery(), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
-        result.Value.Should().HaveCount(1);
-        result.Value.First().Id.Should().Be(activeCampaign.Id);
+        result.Value.Items.Should().HaveCount(1);
+        result.Value.Items.First().Id.Should().Be(activeCampaign.Id);
     }
 
     [Fact]
@@ -37,7 +37,7 @@ public sealed class GetActiveDonorCampaignsQueryHandlerTests
         var result = await sut.Handle(new GetActiveDonorCampaignsQuery(), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
-        result.Value.Should().BeEmpty();
+        result.Value.Items.Should().BeEmpty();
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public sealed class GetActiveDonorCampaignsQueryHandlerTests
 
         var result = await sut.Handle(new GetActiveDonorCampaignsQuery(PageSize: 2), CancellationToken.None);
 
-        result.Value.Should().HaveCount(2);
+        result.Value.Items.Should().HaveCount(2);
     }
 
     [Fact]

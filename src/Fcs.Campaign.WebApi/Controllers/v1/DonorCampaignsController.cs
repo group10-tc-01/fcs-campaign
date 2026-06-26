@@ -1,3 +1,4 @@
+using Fcs.Campaign.Application.Common.Pagination;
 using Fcs.Campaign.Application.UseCases.Campaigns.ActiveDonorCampaigns;
 using Fcs.Campaign.WebApi.Extensions;
 using Fcs.Campaign.WebApi.Models;
@@ -16,7 +17,7 @@ public sealed class DonorCampaignsController : BaseApiController
     }
 
     [HttpGet("active")]
-    [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<ActiveDonorCampaignResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<PagedResponse<ActiveDonorCampaignResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetActive(
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 10,
@@ -28,6 +29,6 @@ public sealed class DonorCampaignsController : BaseApiController
         if (result.IsFailure)
             return result.Error.ToActionResult();
 
-        return Ok(ApiResponse<IReadOnlyList<ActiveDonorCampaignResponse>>.FromSuccess(result.Value));
+        return Ok(ApiResponse<PagedResponse<ActiveDonorCampaignResponse>>.FromSuccess(result.Value));
     }
 }

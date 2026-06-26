@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Fcs.Campaign.Application.Common.Pagination;
 using Fcs.Campaign.Application.UseCases.Campaigns.ActiveDonorCampaigns;
 using Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
 using Fcs.Campaign.IntegratedTests.Configurations;
@@ -40,10 +41,11 @@ public sealed class DonorCampaignsControllerTests : IClassFixture<CustomWebAppli
         var response = await doadorClient.GetAsync("/api/v1/campaigns/active");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<IReadOnlyList<ActiveDonorCampaignResponse>>>(JsonOptions);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<PagedResponse<ActiveDonorCampaignResponse>>>(JsonOptions);
         payload.Should().NotBeNull();
-        payload!.Data.Should().HaveCount(1);
-        payload.Data.First().Id.Should().Be(active.Id);
+        payload!.Data!.Items.Should().HaveCount(1);
+        payload.Data.TotalCount.Should().Be(1);
+        payload.Data.Items.First().Id.Should().Be(active.Id);
     }
 
     [Fact]
@@ -57,9 +59,10 @@ public sealed class DonorCampaignsControllerTests : IClassFixture<CustomWebAppli
         var response = await doadorClient.GetAsync("/api/v1/campaigns/active");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<IReadOnlyList<ActiveDonorCampaignResponse>>>(JsonOptions);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<PagedResponse<ActiveDonorCampaignResponse>>>(JsonOptions);
         payload.Should().NotBeNull();
-        payload!.Data.Should().BeEmpty();
+        payload!.Data!.Items.Should().BeEmpty();
+        payload.Data.TotalCount.Should().Be(0);
     }
 
     [Fact]
