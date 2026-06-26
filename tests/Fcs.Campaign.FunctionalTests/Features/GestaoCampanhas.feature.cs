@@ -26,8 +26,8 @@ namespace Fcs.Campaign.FunctionalTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Features", "Gestão de campanhas", "  Como GestorONG\r\n  Quero administrar campanhas\r\n  Para manter as iniciativas de " +
-                "arrecadação atualizadas", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "Features", "Gestão de campanhas", ("  Como GestorONG\r\n  Quero administrar campanhas\r\n  Para manter as iniciativas de " +
+                "arrecadação atualizadas"), global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         

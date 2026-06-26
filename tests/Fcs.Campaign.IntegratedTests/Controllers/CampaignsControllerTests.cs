@@ -204,4 +204,56 @@ public sealed class CampaignsControllerTests : IClassFixture<CustomWebApplicatio
         var secondPayload = await secondResponse.Content.ReadFromJsonAsync<ApiResponse<ProcessDonationResponse>>();
         secondPayload!.Data!.Duplicate.Should().BeTrue();
     }
+
+    [Fact]
+    public async Task Given_ActiveCampaign_When_CompleteIsCalled_Then_ShouldReturnSuccess()
+    {
+        var campaign = new CampaignBuilder().Build();
+        await _factory.Repository.AddAsync(campaign);
+
+        var response = await _client.PatchAsync($"/api/v1/campaigns/{campaign.Id}/complete", null);
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<CampaignStatusResponse>>(JsonOptions);
+        payload.Should().NotBeNull();
+        payload!.Data!.Status.Should().Be(CampaignStatus.Completed);
+    }
+
+    [Fact]
+    public async Task Given_ActiveCampaign_When_CancelIsCalled_Then_ShouldReturnSuccess()
+    {
+        var campaign = new CampaignBuilder().Build();
+        await _factory.Repository.AddAsync(campaign);
+
+        var response = await _client.PatchAsync($"/api/v1/campaigns/{campaign.Id}/cancel", null);
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var payload = await response.Content.ReadFromJsonAsync<ApiResponse<CampaignStatusResponse>>(JsonOptions);
+        payload.Should().NotBeNull();
+        payload!.Data!.Status.Should().Be(CampaignStatus.Canceled);
+    }
+
+    [Fact]
+    public async Task Given_UnknownCampaign_When_CompleteIsCalled_Then_ShouldReturnNotFound()
+    {
+        var response = await _client.PatchAsync($"/api/v1/campaigns/{Guid.NewGuid()}/complete", null);
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Fact]
+    public async Task Given_UnknownCampaign_When_CancelIsCalled_Then_ShouldReturnNotFound()
+    {
+        var response = await _client.PatchAsync($"/api/v1/campaigns/{Guid.NewGuid()}/cancel", null);
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Fact]
+    public async Task Given_UnknownCampaign_When_GetByIdIsCalled_Then_ShouldReturnNotFound()
+    {
+        var response = await _client.GetAsync($"/api/v1/campaigns/{Guid.NewGuid()}");
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
 }

@@ -1,7 +1,9 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fcs.Campaign.WebApi.Middlewares;
 
+[ExcludeFromCodeCoverage]
 public sealed class RequestFlowLoggingMiddleware
 {
     private static readonly PathString[] IgnoredPathPrefixes =
