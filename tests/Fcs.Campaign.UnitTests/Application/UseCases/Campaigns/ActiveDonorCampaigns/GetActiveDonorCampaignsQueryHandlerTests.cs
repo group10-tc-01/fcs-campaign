@@ -52,4 +52,30 @@ public sealed class GetActiveDonorCampaignsQueryHandlerTests
 
         result.Value.Should().HaveCount(2);
     }
+
+    [Fact]
+    public void Given_DefaultConstructor_When_CreateQuery_Then_ShouldSetDefaults()
+    {
+        var query = new GetActiveDonorCampaignsQuery();
+
+        query.Page.Should().Be(1);
+        query.PageSize.Should().Be(10);
+    }
+
+    [Fact]
+    public void Given_Values_When_CreateResponse_Then_ShouldSetProperties()
+    {
+        var id = Guid.NewGuid();
+        var startDate = DateTime.UtcNow;
+        var endDate = startDate.AddDays(10);
+
+        var response = new ActiveDonorCampaignResponse(id, "Test Campaign", 10000m, 2500m, startDate, endDate);
+
+        response.Id.Should().Be(id);
+        response.Title.Should().Be("Test Campaign");
+        response.FinancialGoal.Should().Be(10000m);
+        response.TotalAmountRaised.Should().Be(2500m);
+        response.StartDate.Should().Be(startDate);
+        response.EndDate.Should().Be(endDate);
+    }
 }

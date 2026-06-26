@@ -61,6 +61,32 @@ public sealed class CampaignsController : BaseApiController
         return Ok(ApiResponse<CampaignStatusResponse>.FromSuccess(result.Value));
     }
 
+    [HttpPatch("{id:guid}/complete")]
+    [ProducesResponseType(typeof(ApiResponse<CampaignStatusResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Complete(Guid id, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(
+            new UpdateCampaignStatusCommand(id, CampaignStatus.Completed.ToString()), cancellationToken);
+
+        if (result.IsFailure)
+            return result.Error.ToActionResult();
+
+        return Ok(ApiResponse<CampaignStatusResponse>.FromSuccess(result.Value));
+    }
+
+    [HttpPatch("{id:guid}/cancel")]
+    [ProducesResponseType(typeof(ApiResponse<CampaignStatusResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Cancel(Guid id, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(
+            new UpdateCampaignStatusCommand(id, CampaignStatus.Canceled.ToString()), cancellationToken);
+
+        if (result.IsFailure)
+            return result.Error.ToActionResult();
+
+        return Ok(ApiResponse<CampaignStatusResponse>.FromSuccess(result.Value));
+    }
+
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(ApiResponse<CampaignResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
