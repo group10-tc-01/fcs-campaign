@@ -2,9 +2,9 @@ namespace Fcs.Campaign.CommomTestsUtilities.Builders.Campaigns;
 
 public sealed class CampaignBuilder
 {
-    private string _title = "Winter blankets";
-    private string _description = "Campaign to collect resources for winter blankets.";
-    private DateTime _startDate = DateTime.UtcNow.Date;
+    private readonly string _title = "Winter blankets";
+    private readonly string _description = "Campaign to collect resources for winter blankets.";
+    private readonly DateTime _startDate = DateTime.UtcNow.Date;
     private DateTime _endDate = DateTime.UtcNow.Date.AddDays(30);
     private decimal _financialGoal = 1000;
     private Guid _createdByManagerId = Guid.NewGuid();

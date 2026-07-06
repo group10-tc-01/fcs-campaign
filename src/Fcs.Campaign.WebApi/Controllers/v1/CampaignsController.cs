@@ -69,7 +69,9 @@ public sealed class CampaignsController : BaseApiController
             new UpdateCampaignStatusCommand(id, CampaignStatus.Completed.ToString()), cancellationToken);
 
         if (result.IsFailure)
+        {
             return result.Error.ToActionResult();
+        }
 
         return Ok(ApiResponse<CampaignStatusResponse>.FromSuccess(result.Value));
     }
@@ -82,7 +84,9 @@ public sealed class CampaignsController : BaseApiController
             new UpdateCampaignStatusCommand(id, CampaignStatus.Canceled.ToString()), cancellationToken);
 
         if (result.IsFailure)
+        {
             return result.Error.ToActionResult();
+        }
 
         return Ok(ApiResponse<CampaignStatusResponse>.FromSuccess(result.Value));
     }

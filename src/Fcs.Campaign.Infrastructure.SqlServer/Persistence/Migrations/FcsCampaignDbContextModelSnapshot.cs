@@ -9,16 +9,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations
+namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations;
+
+[ExcludeFromCodeCoverage]
+[DbContext(typeof(FcsCampaignDbContext))]
+partial class FcsCampaignDbContextModelSnapshot : ModelSnapshot
 {
-    [ExcludeFromCodeCoverage]
-    [DbContext(typeof(FcsCampaignDbContext))]
-    partial class FcsCampaignDbContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
+        modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -137,6 +137,5 @@ namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations
                     b.Navigation("Campaign");
                 });
 #pragma warning restore 612, 618
-        }
     }
 }
