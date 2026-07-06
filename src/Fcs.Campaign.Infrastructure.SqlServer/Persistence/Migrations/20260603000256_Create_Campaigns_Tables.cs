@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations
+namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations;
+
+/// <inheritdoc />
+[ExcludeFromCodeCoverage]
+public partial class Create_Campaigns_Tables : Migration
 {
     /// <inheritdoc />
-    [ExcludeFromCodeCoverage]
-    public partial class Create_Campaigns_Tables : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Campaigns",
                 columns: table => new
                 {
@@ -83,14 +83,13 @@ namespace Fcs.Campaign.Infrastructure.SqlServer.Persistence.Migrations
                 column: "Status");
         }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "CampaignDonationEntries");
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: "CampaignDonationEntries");
 
-            migrationBuilder.DropTable(
-                name: "Campaigns");
-        }
+        migrationBuilder.DropTable(
+            name: "Campaigns");
     }
 }

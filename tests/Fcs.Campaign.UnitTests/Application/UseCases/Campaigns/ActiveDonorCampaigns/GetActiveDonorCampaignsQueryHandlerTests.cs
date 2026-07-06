@@ -45,7 +45,9 @@ public sealed class GetActiveDonorCampaignsQueryHandlerTests
     {
         var repository = new InMemoryCampaignRepository();
         for (var i = 0; i < 3; i++)
+        {
             await repository.AddAsync(new CampaignBuilder().WithFinancialGoal(1000 * (i + 1)).Build());
+        }
         var sut = new GetActiveDonorCampaignsQueryHandler(repository);
 
         var result = await sut.Handle(new GetActiveDonorCampaignsQuery(PageSize: 2), CancellationToken.None);

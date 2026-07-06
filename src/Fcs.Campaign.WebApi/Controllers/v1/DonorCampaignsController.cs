@@ -27,7 +27,9 @@ public sealed class DonorCampaignsController : BaseApiController
             new GetActiveDonorCampaignsQuery(page, pageSize), cancellationToken);
 
         if (result.IsFailure)
+        {
             return result.Error.ToActionResult();
+        }
 
         return Ok(ApiResponse<PagedResponse<ActiveDonorCampaignResponse>>.FromSuccess(result.Value));
     }
