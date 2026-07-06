@@ -17,6 +17,8 @@ using Microsoft.Extensions.Options;
 
 namespace Fcs.Campaign.IntegratedTests.Configurations;
 
+public sealed record RoleClaimValue(string Role);
+
 public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     public const string AuthenticationScheme = "Test";
@@ -47,6 +49,7 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
             services.AddSingleton<ICampaignRepository>(Repository);
             services.AddSingleton<IUnitOfWork>(UnitOfWork);
             services.AddSingleton<IMessagePublisher>(Publisher);
+            services.AddSingleton(new RoleClaimValue("GestorONG"));
         });
 
         builder.ConfigureTestServices(services =>
@@ -59,13 +62,29 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
         });
     }
 
+    public HttpClient CreateClientWithRole(string role)
+    {
+        return WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureServices(services =>
+            {
+                services.RemoveAll<RoleClaimValue>();
+                services.AddSingleton(new RoleClaimValue(role));
+            });
+        }).CreateClient();
+    }
+
     private sealed class TestAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
+        private readonly RoleClaimValue _roleClaim;
+
         public TestAuthenticationHandler(
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,
-            UrlEncoder encoder) : base(options, logger, encoder)
+            UrlEncoder encoder,
+            RoleClaimValue roleClaim) : base(options, logger, encoder)
         {
+            _roleClaim = roleClaim;
         }
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -73,7 +92,7 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Role, "GestorONG")
+                new Claim(ClaimTypes.Role, _roleClaim.Role)
             };
             var identity = new ClaimsIdentity(claims, AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);

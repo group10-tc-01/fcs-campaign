@@ -3,7 +3,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "Your_password123"
+      SA_PASSWORD: "${SQL_SERVER_PASSWORD}"
       MSSQL_PID: "Developer"
     ports:
       - "5433:1433"
@@ -41,6 +41,7 @@ services:
       dockerfile: src/Fcs.Campaign.WebApi/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Docker
+      SQL_SERVER_PASSWORD: "${SQL_SERVER_PASSWORD}"
       Observability__EnableOtlpExporter: "true"
       Observability__OtlpEndpoint: "http://otel-collector:4318"
       Observability__OtlpAuthHeader: ""

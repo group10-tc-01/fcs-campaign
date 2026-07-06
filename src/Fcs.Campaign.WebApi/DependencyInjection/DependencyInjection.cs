@@ -99,7 +99,7 @@ public static class DependencyInjection
         var loggerConfiguration = new LoggerConfiguration()
             .MinimumLevel.Information()
             .Enrich.FromLogContext()
-            .Enrich.WithMachineName()
+            .Enrich.WithProperty("MachineName", Environment.MachineName)
             .Enrich.WithProperty("Application", "Fcs.Campaign")
             .Enrich.WithProperty("Environment", environment)
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [{CorrelationId}] {Message:lj}{NewLine}{Exception}");
