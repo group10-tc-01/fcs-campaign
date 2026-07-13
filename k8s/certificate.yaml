@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: fcs-campaign-tls
+  namespace: fcs-campaigns
+spec:
+  secretName: fcs-campaign-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-production
+  dnsNames:
+    - fcs-campaign.flaviojcf.com.br
