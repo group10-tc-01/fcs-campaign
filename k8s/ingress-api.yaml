@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fcs-campaign-api
+  namespace: fcs-campaigns
+spec:
+  ingressClassName: fcs-traefik
+  tls:
+    - hosts:
+        - fcs-campaign.flaviojcf.com.br
+      secretName: fcs-campaign-tls
+  rules:
+    - host: fcs-campaign.flaviojcf.com.br
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: fcs-campaign-service
+                port:
+                  number: 8080

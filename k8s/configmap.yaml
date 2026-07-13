@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: campaign-config
+  namespace: fcs-campaigns
+data:
+  ASPNETCORE_ENVIRONMENT: Production
+  ASPNETCORE_URLS: http://+:8080
+  HttpsRedirection__Enabled: "false"
+  Database__ApplyMigrations: "true"
+  KafkaSettings__BootstrapServers: kafka-service.fcs-infra.svc.cluster.local:29092
+  KafkaSettings__TopicName: audit-log-requested
+  Keycloak__Authority: http://keycloak-service.fcs-infra.svc.cluster.local:8080/realms/conexao-solidaria
+  Keycloak__Audience: solidarity-api
+  Cors__AllowedOrigins__0: https://fcs-web.flaviojcf.com.br
+  Observability__ServiceName: Fcs.Campaign
+  Observability__EnableOtlpExporter: "false"
