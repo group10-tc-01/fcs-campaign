@@ -2,7 +2,7 @@
 
 Serviço de **Campanhas e Transparência** da plataforma **Conexão Solidária**. É responsável pela administração de campanhas por **GestorONG**, exposição pública de campanhas ativas e atualização idempotente do valor arrecadado após o processamento de doações.
 
-> Microsserviço que compõe o MVP da Conexão Solidária junto a `fcs-identity`, `fcs-donations`, `fcs-donation-worker`, `fcs-audit-logs`, `fcs-bff`, `fcs-web` e `fcs-infra`.
+> Microsserviço que compõe o MVP da Conexão Solidária junto a `fcs-identity`, `fcs-donations`, `fcs-donation-worker`, `fcs-notifications`, `fcs-audit-logs`, `fcs-bff`, `fcs-web` e `fcs-infra`.
 
 ---
 
