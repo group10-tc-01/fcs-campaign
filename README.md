@@ -2,7 +2,7 @@
 
 Serviço de **Campanhas e Transparência** da plataforma **Conexão Solidária**. É responsável pela administração de campanhas por **GestorONG**, exposição pública de campanhas ativas e atualização idempotente do valor arrecadado após o processamento de doações.
 
-> Microsserviço que compõe o MVP da Conexão Solidária junto a `fcs-identity`, `fcs-donations`, `fcs-donation-worker`, `fcs-audit-logs`, `fcs-solidarity-web` e `fcs-solidarity-infra`.
+> Microsserviço que compõe o MVP da Conexão Solidária junto a `fcs-identity`, `fcs-donations`, `fcs-donation-worker`, `fcs-notifications`, `fcs-audit-logs`, `fcs-bff`, `fcs-web` e `fcs-infra`.
 
 ---
 
@@ -69,8 +69,6 @@ tests/
   fcs.Campaign.CommomTestsUtilities/
 ```
 
-Estrutura interna alinhada ao padrão da fase 04 ([ADR 0023](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0023-use-phase-04-dotnet-service-structure.md)).
-
 ---
 
 ## Endpoints
@@ -95,7 +93,20 @@ Endpoints internos entre serviços:
 | GET    | `/internal/campaigns/{id}/donation-eligibility`        | Cluster/rede   | Informa se a campanha pode receber doação |
 | POST   | `/internal/campaigns/{id}/donation-processed`          | Cluster/rede   | Reflete uma doação processada de forma idempotente |
 
-Padrão de resposta `ApiResponse<T>` documentado em [endpoints.md](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/architecture/endpoints.md).
+Padrão de resposta `ApiResponse<T>` e cenários de falha documentados nos [fluxos de endpoints](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/architecture/endpoint-flows.md).
+
+### Fluxo principal de processamento de doação
+
+```mermaid
+sequenceDiagram
+    participant Worker as fcs-donation-worker
+    participant Campaign as fcs-campaign
+    participant Db as CampaignsDb
+    Worker->>Campaign: POST /internal/campaigns/{id}/donation-processed
+    Campaign->>Db: Verificar DonationId e atualizar total
+    Db-->>Campaign: Atualização idempotente
+    Campaign-->>Worker: 200 OK
+```
 
 ### Exemplo: criar campanha
 
@@ -161,7 +172,7 @@ O endpoint é idempotente por `CampaignId + DonationId`. Uma segunda chamada com
 
 ## Pré-requisitos
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - [Docker](https://docs.docker.com/get-docker/) e Docker Compose
 - Keycloak/realm da plataforma disponível via `fcs-identity` ou ambiente integrado
 - Portas livres no host: `5433` (SQL Server), `9092` (Kafka), `2181` (Zookeeper), `5341` (Seq), `8080` (API em container), `5000` (API local)
@@ -170,7 +181,7 @@ O endpoint é idempotente por `CampaignId + DonationId`. Uma segunda chamada com
 
 ## Subindo o ambiente local
 
-O `docker-compose.yml` deste repositório sobe **apenas** as dependências locais deste serviço (SQL Server, Kafka, Zookeeper, Seq) e, opcionalmente, a própria API. Para o ambiente completo integrado da Conexão Solidária utilize o repositório `fcs-solidarity-infra`.
+O `docker-compose.yml` deste repositório sobe **apenas** as dependências locais deste serviço (SQL Server, Kafka, Zookeeper, Seq) e, opcionalmente, a própria API. Para o ambiente completo integrado da Conexão Solidária utilize o repositório `fcs-infra`.
 
 ### 1. Subir dependências
 
@@ -248,7 +259,7 @@ dotnet test tests/fcs.Campaign.IntegratedTests
 dotnet test tests/fcs.Campaign.FunctionalTests
 ```
 
-Cobertura mínima exigida pela esteira: **80%** ([ADR 0025](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0025-test-strategy-for-apis-and-worker.md)).
+Cobertura mínima exigida pela esteira: **80%** ([ADR 0021](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0021-test-strategy-for-apis-and-worker.md)).
 
 ---
 
@@ -260,13 +271,13 @@ Cobertura mínima exigida pela esteira: **80%** ([ADR 0025](https://github.com/g
 - Endpoint operacional:
   - `GET /health`
 
-Endpoints internos e operacionais não devem ser publicados na borda pública da plataforma ([ADR 0027](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0027-keep-internal-apis-cluster-private.md)).
+Endpoints internos usam Services e DNS do Kubernetes; a exposição pública passa pelo Traefik com TLS, conforme a [visão geral da arquitetura](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/architecture/overview.md).
 
 ---
 
 ## CI/CD
 
-A esteira está em `.github/workflows/` reutilizando os workflows reutilizáveis do repositório `fcs-pipelines` ([ADR 0022](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0022-reuse-fcs-pipelines-for-ci-cd.md)):
+A esteira está em `.github/workflows/` reutilizando os workflows reutilizáveis do repositório `fcs-pipelines` ([ADR 0018](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0018-reuse-fcs-pipelines-for-ci-cd.md)):
 
 - `branch-name-check.yml` - política de nomes de branch
 - `dotnet-service-ci.yml` - build .NET, testes, SonarCloud, Trivy, build da imagem Docker
@@ -278,7 +289,7 @@ Gates principais: secret scan (Gitleaks), dependency scan, restore/build, testes
 
 ## Kubernetes
 
-Manifests Kubernetes deste serviço (Deployment, Service, ConfigMap, Secret) ficam em `k8s/` ou diretório equivalente neste repositório. Para o ambiente integrado (Kind local ou AKS), com Keycloak, Kafka, Prometheus e Grafana compartilhados, consulte o repositório `fcs-solidarity-infra` ([ADR 0026](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0026-use-separated-kubernetes-namespaces.md)).
+Manifests Kubernetes deste serviço ficam em `k8s/`. Para a plataforma integrada VPS/K3s, com Keycloak, Kafka, Datadog e componentes compartilhados, consulte `fcs-infra` ([ADR 0022](https://github.com/group10-tc-01/fcs-fase05-docs/blob/main/adr/0022-use-separated-kubernetes-namespaces.md)).
 
 Namespace alvo: `fcs-campaigns`.
 
