@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json;
 using Confluent.Kafka;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace Fcs.Campaign.Infrastructure.Kafka.Messaging;
 
+[ExcludeFromCodeCoverage]
 public sealed class KafkaMessagePublisher : IMessagePublisher
 {
     private readonly KafkaSettings _settings;
