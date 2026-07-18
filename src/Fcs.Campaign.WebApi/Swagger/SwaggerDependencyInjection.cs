@@ -6,14 +6,15 @@ namespace Fcs.Campaign.WebApi.Swagger;
 [ExcludeFromCodeCoverage]
 public static class SwaggerDependencyInjection
 {
-    public static IServiceCollection AddCampaignSwagger(this IServiceCollection services)
+    public static IServiceCollection AddCampaignSwagger(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo
             {
                 Title = "Fcs.Campaign API",
-                Version = "v1.0"
+                Version = "v1.0",
+                Description = BuildDeploymentDescription(configuration)
             });
 
             options.AddSecurityDefinition(SwaggerConstants.BearerSecurityScheme, new OpenApiSecurityScheme
@@ -30,5 +31,30 @@ public static class SwaggerDependencyInjection
         });
 
         return services;
+    }
+
+    private static string BuildDeploymentDescription(IConfiguration configuration)
+    {
+        var deployedAt = configuration["Deployment:DeployedAt"] ?? "não informado";
+        var sourceSha = configuration["Deployment:SourceSha"] ?? "não informado";
+        var image = configuration["Deployment:Image"] ?? "não informado";
+
+        return $"""
+            API de campanhas e transparência da plataforma Conexão Solidária.
+
+            ### Versão
+
+            **Data/hora (UTC)**
+
+            {deployedAt}
+
+            **Commit**
+
+            {sourceSha}
+
+            **Imagem**
+
+            {image}
+            """;
     }
 }

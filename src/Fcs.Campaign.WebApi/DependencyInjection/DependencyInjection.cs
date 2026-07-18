@@ -25,7 +25,7 @@ public static class DependencyInjection
             });
 
         services.AddEndpointsApiExplorer();
-        services.AddCampaignSwagger();
+        services.AddCampaignSwagger(configuration);
         services.AddCorsConfiguration(configuration);
         services.AddVersioning();
         services.AddFilters();
