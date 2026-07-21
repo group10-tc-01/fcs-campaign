@@ -1,0 +1,57 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: fcs-campaign
+  title: FCS Campaign
+  description: Gestão de campanhas, transparência e elegibilidade de doações.
+  annotations:
+    github.com/project-slug: group10-tc-01/fcs-campaign
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: fcs-campaign
+    backstage.io/kubernetes-namespace: fcs-campaigns
+  links:
+    - title: Datadog
+      url: https://us5.datadoghq.com/metric/explorer?query=service%3Afcs-campaign
+      icon: dashboard
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/fcs-team
+  system: conexao-solidaria
+  providesApis:
+    - fcs-campaign-api
+  dependsOn:
+    - resource:default/sqlserver
+    - resource:default/keycloak
+    - resource:default/kafka
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: fcs-campaign-api
+  title: FCS Campaign API
+  description: API de gestão e transparência de campanhas.
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/fcs-team
+  system: conexao-solidaria
+  definition: |
+    openapi: 3.0.3
+    info:
+      title: FCS Campaign API
+      version: v1
+    paths:
+      /api/v1/campaigns:
+        get:
+          summary: Lista campanhas para gestão
+        post:
+          summary: Cria uma campanha
+      /api/v1/campaigns/{id}:
+        get:
+          summary: Consulta uma campanha
+        put:
+          summary: Atualiza uma campanha
+      /api/v1/transparency/campaigns:
+        get:
+          summary: Lista campanhas ativas
