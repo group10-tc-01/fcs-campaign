@@ -7,6 +7,7 @@ using Fcs.Campaign.WebApi.DependencyInjection;
 
 namespace Fcs.Campaign.WebApi;
 
+// trigger CI/CD demo build
 [ExcludeFromCodeCoverage]
 
 public class Program
